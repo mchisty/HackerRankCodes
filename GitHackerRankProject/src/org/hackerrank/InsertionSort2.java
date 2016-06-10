@@ -29,6 +29,7 @@ import java.util.Scanner;
 //---------------------
 
 public class InsertionSort2 {
+    // My solution: the lengthy way
     public static void insertionSortPart2(int[] ar) {
 	for (int size1 = 2; size1 < ar.length; ++size1) {
 	    int size2 = ar.length - size1;

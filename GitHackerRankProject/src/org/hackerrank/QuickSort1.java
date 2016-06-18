@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 //5
-//4 5 3 7 2
+//4 8 3 7 2
 //---------------------
 // output: 3 2 4 5 7
 public class QuickSort1 {

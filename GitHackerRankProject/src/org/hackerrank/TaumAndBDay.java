@@ -1,25 +1,5 @@
 package org.hackerrank;
 
-//------------------------
-// Sample input
-//5
-//10 10
-//1 1 1
-//5 9
-//2 3 4
-//3 6
-//9 1 1
-//7 7
-//4 2 1
-//3 3
-//1 9 2
-//------------------------
-// Output
-//20
-//37
-//12
-//35
-//12
 import java.util.Scanner;
 
 public class TaumAndBDay {
@@ -31,82 +11,45 @@ public class TaumAndBDay {
 	// -------------------------------------------
 	Scanner in = new Scanner(System.in);
 	int t = in.nextInt();
-	for (int a0 = 0; a0 < t; a0++) {
-	    long b = in.nextLong();
-	    long w = in.nextLong();
-	    long x = in.nextLong();
-	    long y = in.nextLong();
-	    long z = in.nextLong();
-	    // ----------------------------------
-	    long result = tb.getCheaperPrice(b, w, x, y, z);
-	    System.out.println("value: " + result);
+	long B[] = new long[t];
+	long W[] = new long[t];
+	long X[] = new long[t];
+	long Y[] = new long[t];
+	long Z[] = new long[t];
+	for (int i = 0; i < t; ++i) {
+	    B[i] = in.nextLong();
+	    W[i] = in.nextLong();
+	    X[i] = in.nextLong();
+	    Y[i] = in.nextLong();
+	    Z[i] = in.nextLong();
 	}
 	in.close();
-    }
-
-    boolean isBlackExpensiveThanWhite(long blackPrice, long whitePrice) {
-	return blackPrice > whitePrice;
-    }
-
-    boolean isConversionNeeded(long black, long white, long X, long Y, long Z) {
-	long blackPrice = black * X;
-	long whitePrice = white * Y;
-	long convBlackPrice = black * Y;
-	long convWhitePrice = white * X;
-	if (isBlackEqualToWhite(blackPrice, whitePrice)) {
-	    return false;
+	// ----------------------------------
+	for (int i = 0; i < t; ++i) {
+	    long k = tb.getOptimalPrice(B[i], W[i], X[i], Y[i], Z[i]);
+	    System.out.println(k);
 	}
-	if (blackPrice > whitePrice) {
-	    if (convBlackPrice < convWhitePrice) {
-		// TODO: Proceed
-		return true;
+    }
+
+    long getOptimalPrice(long B, long W, long X, long Y, long Z) {
+	final long BX = B * X;
+	final long WY = W * Y;
+	final long sum1 = BX + WY;
+	long BY = 0L, WX = 0L;
+	long sum2 = 0L;
+	if (X < Y) {
+	    WX = W * (X + Z);
+	    sum2 = BX + WX;
+	    if (sum2 < sum1) {
+		return sum2;
 	    }
-	} else if (whitePrice > blackPrice) {
-	    if (convWhitePrice < convBlackPrice) {
-		// TODO: Proceed
-		return true;
+	} else if (Y < X) {
+	    BY = B * (Y + Z);
+	    sum2 = BY + WY;
+	    if (sum2 < sum1) {
+		return sum2;
 	    }
 	}
-	return false;
+	return sum1;
     }
-
-    boolean isBlackEqualToWhite(long blackPrice, long whitePrice) {
-	return blackPrice == whitePrice;
-    }
-
-    long getCheaperPrice(long black, long white, long X, long Y, long Z) {
-	long blackPrice = black * X;
-	long whitePrice = white * Y;
-	long sum = 0L;
-	if (!isConversionNeeded(black, white, X, Y, Z)) {
-	    sum = blackPrice + whitePrice;
-	} else if (isBlackExpensiveThanWhite(blackPrice, whitePrice)) {
-	    sum = (black * (Y + Z)) + whitePrice;
-	} else {
-	    sum = (white * (X + Z)) + blackPrice;
-	}
-	return sum;
-    }
-    // ----------------------------------------------------------------------------------------
-    // boolean isBlackExpensiveThanWhite(BigInteger blackPrice, BigInteger whitePrice) {
-    // return blackPrice.compareTo(whitePrice) > 0;
-    // }
-    //
-    // boolean isBlackEqualToWhite(BigInteger blackPrice, BigInteger whitePrice) {
-    // return blackPrice.compareTo(whitePrice) == 0;
-    // }
-    //
-    // BigInteger getCheaperPrice(BigInteger black, BigInteger white, BigInteger X, BigInteger Y, BigInteger Z) {
-    // BigInteger blackPrice = black.multiply(X);
-    // BigInteger whitePrice = white.multiply(Y);
-    // BigInteger sum = BigInteger.ZERO;
-    // if (isBlackEqualToWhite(blackPrice, whitePrice)) {
-    // sum = blackPrice.add(whitePrice);
-    // } else if (isBlackExpensiveThanWhite(blackPrice, whitePrice)) {
-    // sum = black.multiply(Y.add(Z)).add(whitePrice);
-    // } else {
-    // sum = white.multiply(X.add(Z)).add(blackPrice);
-    // }
-    // return sum;
-    // }
 }

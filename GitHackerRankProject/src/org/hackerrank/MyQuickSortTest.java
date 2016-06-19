@@ -9,8 +9,9 @@ public class MyQuickSortTest {
 
     public static void main(String[] args) {
 	MyQuickSortTest mt = new MyQuickSortTest();
-	int[] a = { 5, 8, 1, 3, 7, 9, 2 }; // { 14, 10, 7, 4, 3 }; //
+	int[] a = { 1, 3, 9, 8, 2, 7, 5 }; // { 5, 8, 1, 3, 7, 9, 2 };
 	mt.quickSort(a, 0, a.length - 1);
+	System.out.println("Count pivot moves: " + mt.countPivotMoves);
     }
 
     void quickSort(int a[], int minpos, int maxpos) {
@@ -23,6 +24,7 @@ public class MyQuickSortTest {
 	quickSort(a, pivotPosition + 1, maxpos);
 	printArray(a, minpos, maxpos);
     }
+    int countPivotMoves = 0;
 
     int getPartitionPos(int a[], int minpos, int maxpos) {
 	List<Integer> leftList = new ArrayList<>();
@@ -30,6 +32,7 @@ public class MyQuickSortTest {
 	int pivot = a[minpos];
 	for (int i = minpos + 1; i <= maxpos; ++i) {
 	    if (a[i] < pivot) {
+		++countPivotMoves;
 		leftList.add(a[i]);
 	    } else {
 		rightList.add(a[i]);

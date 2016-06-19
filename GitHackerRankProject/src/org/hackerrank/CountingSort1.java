@@ -11,12 +11,15 @@ public class CountingSort1 {
 	    a[i] = in.nextInt();
 	}
 	in.close();
-	for (int i = 0; i < a.length - 1; ++i) {
-	    int num = a[i];
-	    for (int j = i + 1; j < a.length; ++j) {
-		if (a[j] == num) {
+	int count = 0;
+	for (int j = 0; j <= n; ++j) {
+	    for (int i = 0; i < a.length; ++i) {
+		if (j == a[i]) {
+		    count = count + 1;
 		}
 	    }
+	    System.out.print(count + " ");
+	    count = 0;
 	}
     }
 }

@@ -4,22 +4,7 @@ import java.util.Scanner;
 
 public class SherlokAndBeast {
 
-	static final String FIVE = "5";
-	static final String THREE = "3";
-	static final int five = 5;
-	static final int three = 3;
-
-	// ===============================================================================
-
 	public static void main(String[] args) {
-		// int n = 100000;
-		// List<String> listStr = getAllPermuations(n);
-		// System.out.println("The input: " + n);
-		// System.out.println("" + listStr.toString());
-		// System.out.println("The maximum: " + getTheMaximum(listStr));
-		// test(n);
-
-		// ---------------------------------
 		Scanner in = new Scanner(System.in);
 		int t = in.nextInt();
 		int[] n = new int[t];

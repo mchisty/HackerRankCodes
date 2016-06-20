@@ -16,7 +16,7 @@ public class StackTest {
 	}
 
 	public static boolean isBalanced(String s) {
-		Stack stack = new Stack(s);
+		MyStack stack = new MyStack(s);
 		for (int i = 0; i < s.length(); i++) {
 
 			// Push
@@ -64,12 +64,12 @@ public class StackTest {
 
 // -------------------------------------------------------------
 
-class Stack {
+class MyStack {
 	private char stackArray[];
 	private int arraySize;
 	private int pos = -1;
 
-	Stack(String s) {
+	MyStack(String s) {
 		arraySize = s.length();
 		stackArray = new char[arraySize];
 		pos = -1;

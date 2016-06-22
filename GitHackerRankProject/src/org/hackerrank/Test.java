@@ -1,7 +1,5 @@
 package org.hackerrank;
 
-import java.util.Arrays;
-
 public class Test {
 
 	public static void main(String[] args) {
@@ -12,18 +10,38 @@ public class Test {
 				{ 1, 2, 3, 4 } // 4th row
 		}; // end
 
-		int i = 1;
-		int j = 2;
-		int row = 4;
-		int col = 4;
+		int dimesion = 4;
+		char[][] aChar = new char[dimesion][dimesion];
+		// int i = 1;
+		// int j = 2;
+		// boolean flag = isOnBorder(i, j, row, col);
+		// System.out.println(a[i][j] + " is on border? " + flag);
+		// getAdjacentCellValues(a, i, j, row, col);
+		// int[] b = getAdjacentCellValues(a, i, j, row, col);
+		// System.out.println("adjacent value " + Arrays.toString(b));
 
-		boolean flag = isOnBorder(i, j, row, col);
-		System.out.println(a[i][j] + " is on border? " + flag);
-		getAdjacentCellValues(a, i, j, row, col);
-		int[] b = getAdjacentCellValues(a, i, j, row, col);
-		System.out.println("adjacent value " + Arrays.toString(b));
+		for (int i = 0; i < dimesion; ++i) {
+			for (int j = 0; j < dimesion; ++j) {
+
+				aChar[i][j] = (char) (a[i][j] + '0');
+				int[] b = getAdjacentCellValues(a, i, j, dimesion, dimesion);
+				if (null != b) {
+					aChar[i][j] = 'X';
+				}
+			}
+		}
+
+		// --------------------------------
+		for (int i = 0; i < dimesion; ++i) {
+			for (int j = 0; j < dimesion; ++j) {
+				System.out.print(aChar[i][j]);
+			}
+			System.out.println();
+		}
+
 	}
 
+	// ------------------------------
 	static boolean isOnBorder(final int i, final int j, final int row, final int col) {
 		if (i == 0 || j == 0) {
 			return true;
@@ -34,6 +52,7 @@ public class Test {
 		return false;
 	}
 
+	// ------------------------------
 	static int[] getAdjacentCellValues(final int[][] a, final int i, final int j, final int row, final int col) {
 		if (isOnBorder(i, j, row, col)) {
 			return null;

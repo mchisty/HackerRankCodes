@@ -8,10 +8,6 @@ import java.util.Random;
 
 // Works fine, just timeout issue:
 public class ArgoMatrixRotation {
-    // int ROWS = 0, COLS = 0;
-    // int ROTATIONS = 0;
-    // int tmp[][] = null;
-    // int a[][] = null;
     final static String TOP_TO_BOTTOM = "LEFT";
     final static String LEFT_TO_RIGHT = "BOTTOM";
     final static String BOTTOM_TO_TOP = "RIGHT";
@@ -216,55 +212,4 @@ public class ArgoMatrixRotation {
 	map.put(RIGHT_TO_LEFT, a);
 	return map;
     }
-    // ========================================================================================================
-    // void takeInput(Scanner in) {
-    // ROWS = in.nextInt();
-    // COLS = in.nextInt();
-    // ROTATIONS = in.nextInt();
-    // a = new int[ROWS][COLS];
-    // tmp = new int[ROWS][COLS];
-    // for (int i = 0; i < ROWS; ++i) {
-    // for (int j = 0; j < COLS; ++j) {
-    // a[i][j] = in.nextInt();
-    // }
-    // }
-    // }
-    //
-    // void readInputFromFile() {
-    // try {
-    // File file = new File("C:\\Temp\\matrix_input01.txt");
-    // FileInputStream fin = new FileInputStream(file);
-    // InputStreamReader iread = new InputStreamReader(fin);
-    // BufferedReader br = new BufferedReader(iread);
-    // String line1 = br.readLine();
-    // StringTokenizer stoken = new StringTokenizer(line1, "\t ");
-    // ROWS = Integer.parseInt(stoken.nextToken());
-    // COLS = Integer.parseInt(stoken.nextToken());
-    // ROTATIONS = Integer.parseInt(stoken.nextToken());
-    // a = new int[ROWS][COLS];
-    // tmp = new int[ROWS][COLS];
-    // for (int i = 0; i < ROWS; ++i) {
-    // String line2 = br.readLine();
-    // populateArray(line2, i);
-    // }
-    // // ----------------------------
-    // // for (int i = 0; i < ROWS; ++i) {
-    // // for (int j = 0; j < COLS; ++j) {
-    // // System.out.print(a[i][j] + " ");
-    // // }
-    // // System.out.println();
-    // // }
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // }
-    // }
-    //
-    // void populateArray(String line, int row) {
-    // StringTokenizer stoken = new StringTokenizer(line, "\t ");
-    // int j = 0;
-    // while (stoken.hasMoreTokens()) {
-    // a[row][j] = Integer.parseInt(stoken.nextToken());
-    // ++j;
-    // }
-    // }
 }

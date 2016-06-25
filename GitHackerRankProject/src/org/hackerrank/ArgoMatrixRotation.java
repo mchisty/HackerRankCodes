@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
+import java.util.Scanner;
 
 // Works fine, just timeout issue:
 public class ArgoMatrixRotation {
@@ -35,73 +35,89 @@ public class ArgoMatrixRotation {
      * X
      * 
      */
+    // Testing with hardcoded sample data
+    // final int row = 10;
+    // final int col = 8;
+    // int numberOfRotations = 40;
+    // int[][] a = new int[row][col];
+    // Random r = new Random();
+    // // populate sample data
+    // for (int x = 0; x < row; ++x) {
+    // for (int y = 0; y < col; ++y) {
+    // a[x][y] = r.nextInt(1000) + r.nextInt(500);
+    // }
+    // }
+    // System.out.println("========================== Sample array ======================");
+    // for (int x = 0; x < row; ++x) {
+    // for (int y = 0; y < col; ++y) {
+    // System.out.print("\t" + a[x][y]);
+    // }
+    // System.out.println();
+    // }
+    // System.out.println("==============================================================");
+    // numberOfRotations = mt.getActualNumberOfRotations(row, col, numberOfRotations);
+    // for (int n = 0; n < numberOfRotations; ++n) {
+    // mt.performOneShift(a, 0, 0, row, col);
+    // }
+    // Update number of rotations and start positions
+    // numberOfRotations = numberOfRotations * 2;
+    // for (int n = 0; n < numberOfRotations; ++n) {
+    // mt.performOneShift(a, 1, 1, row - 1, col - 1);
+    // }
+    // // print values
+    // for (int x = 0; x < row; ++x) {
+    // for (int y = 0; y < col; ++y) {
+    // System.out.print("\t" + a[x][y]);
+    // }
+    // System.out.println();
+    // }
     public static void main(String[] args) {
 	ArgoMatrixRotation mt = new ArgoMatrixRotation();
-	// // mt.takeInput(in);
-	// mt.readInputFromFile();
-	// in.close();
-	// mt.calculate();
-	int startY = 0;
-	int startX = 0;
-	int row = 10;
-	int col = 8;
-	int numberOfRotations = 40;
-	int[][] a = new int[row][col];
-	Random r = new Random();
-	// populate sample data
-	for (int x = 0; x < row; ++x) {
-	    for (int y = 0; y < col; ++y) {
-		a[x][y] = r.nextInt(1000) + r.nextInt(500);
-	    }
-	}
-	System.out.println("========================== Sample array ======================");
-	for (int x = 0; x < row; ++x) {
-	    for (int y = 0; y < col; ++y) {
-		System.out.print("\t" + a[x][y]);
-	    }
-	    System.out.println();
-	}
-	System.out.println("==============================================================");
-	// numberOfRotations = mt.getActualNumberOfRotations(row, col, numberOfRotations);
-	int fullRotation = (row - 1) * 2 + (col - 1) * 2;
-	System.out.println("number of max rotations (outer boundary):" + fullRotation);
-	for (int n = 0; n < numberOfRotations; ++n) {
-	    mt.performOneShift(a, startX, startY, row, col);
-	}
-	for (int x = 0; x < row; ++x) {
-	    for (int y = 0; y < col; ++y) {
-		System.out.print("\t" + a[x][y]);
-	    }
-	    System.out.println();
-	}
-	// ========================================================
+	// =======================================================================================
 	// Actual Scanner input
-	// Scanner in = new Scanner(System.in);
-	// int row = in.nextInt();
-	// int col = in.nextInt();
-	// int numberOfRotations = in.nextInt();
-	// int[][] a = new int[row][col];
-	// // input sample data
-	// for (int x = 0; x < row; ++x) {
-	// for (int y = 0; y < col; ++y) {
-	// a[x][y] = in.nextInt();
-	// }
-	// }
-	// numberOfRotations = mt.getActualNumberOfRotations(row, col, numberOfRotations);
-	// for (int n = 0; n < numberOfRotations; ++n) {
-	// mt.performOneShift(a, 0, 0, row, col);
-	// }
-	// for (int x = 0; x < row; ++x) {
-	// for (int y = 0; y < col; ++y) {
-	// System.out.print(a[x][y] + " ");
-	// }
-	// System.out.println();
-	// }
+	// =======================================================================================
+	Scanner in = new Scanner(System.in);
+	final int row = in.nextInt();
+	final int col = in.nextInt();
+	final int numberOfRotations = in.nextInt();
+	int[][] a = new int[row][col];
+	// input sample data
+	for (int x = 0; x < row; ++x) {
+	    for (int y = 0; y < col; ++y) {
+		a[x][y] = in.nextInt();
+	    }
+	}
+	in.close();
+	final int fullRotation = (row - 1) * 2 + (col - 1) * 2;
+	int actualRotations = mt.getActualNumberOfRotations(row, col, numberOfRotations);
+	for (int n = 0; n < numberOfRotations; ++n) {
+	    mt.performOneShift(a, 0, 0, row, col);
+	}
+	// -----------------------------------------------------------------------------------------------------
+	// I discovered that if numberOfRotations >= fullRotation, the inner alternating metrices should rotate twice
+	// E.G. For a 6x8 Matrix, the following metrices should rotate this way,
+	// - item starting at [0,0], [2,2], [4,4], [6,6] etc should rotate R times
+	// - item starting at [1,1], [3,3], [5,5], [7,7] etc should rotate R*2 times
+	// -----------------------------------------------------------------------------------------------------
+	// Update number of rotations and start positions
+	if (numberOfRotations >= fullRotation) {
+	    actualRotations = actualRotations * 2;
+	}
+	for (int n = 0; n < numberOfRotations; ++n) {
+	    mt.performOneShift(a, 1, 1, row - 1, col - 1);
+	}
+	// print values
+	for (int x = 0; x < row; ++x) {
+	    for (int y = 0; y < col; ++y) {
+		System.out.print(a[x][y] + " ");
+	    }
+	    System.out.println();
+	}
     }
 
     int getActualNumberOfRotations(int row, int col, int numberOfRoations) {
 	int fullRotation = (row - 1) * 2 + (col - 1) * 2;
-	if (numberOfRoations > fullRotation) {
+	if (numberOfRoations >= fullRotation) {
 	    numberOfRoations = numberOfRoations % fullRotation;
 	}
 	return numberOfRoations;
@@ -158,10 +174,11 @@ public class ArgoMatrixRotation {
 	    for (Integer i : rightToLeft) {
 		a[startX][i] = rightToLeftOriginal[k++];
 	    }
-	    startX = startX + 1;
-	    startY = startY + 1;
-	    row = row - 1;
-	    col = col - 1;
+	    // Update the next start position
+	    startX = startX + 2;
+	    startY = startY + 2;
+	    row = row - 2;
+	    col = col - 2;
 	    performOneShift(a, startX, startY, row, col);
 	}
     }

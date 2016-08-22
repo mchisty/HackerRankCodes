@@ -58,6 +58,12 @@ public class RegExpMatchTest {
 	s = "121.234.12.12"; // "00.12.123.123123.123"; // 122.23 Hello.IP
 	System.out.println("IP address Matches? " + s + " => " + isMatch(s, pattern));
 	System.out.println("-------------------------------------------------------------");
+	pattern = "[L|R|M]*";
+	s = "LLLMMMR";
+	System.out.println("Matches? " + s + " => " + isMatch(s, pattern));
+	s = "lrm";
+	System.out.println("Matches? " + s + " => " + isMatch(s, pattern));
+	System.out.println("-------------------------------------------------------------");
     }
 
     static boolean isMatch(String s, String pattern) {

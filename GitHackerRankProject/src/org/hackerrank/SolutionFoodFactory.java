@@ -1,6 +1,5 @@
 package org.hackerrank;
-
-public class FoodTest {
+public class SolutionFoodFactory {
     public static void main(String[] args) {
 	foodFactory myFoods = new foodFactory();
 	Food food1 = myFoods.getFood("Fastfood");
@@ -13,38 +12,33 @@ public class FoodTest {
     }
 }
 
-class foodFactory extends FoodTest {
-    public Food getFood(String string) {
-	// HashMap<K, V> h
-	// TODO Auto-generated method stub
-	Food f = null;
-	if (string.equals("FastFood")) {
-	    f = new Food("X");
-	} else {
-	    f = new Food("Y");
-	}
-	return f;
-    }
-
+class Fastfood extends Food {
     @Override
-    public String toString() {
-	return "Food";
+    public void serveFood() {
+	System.out.println("I'm serving Fastfood");
     }
 }
 
-class Food extends FoodTest {
-    String name;
-
-    public Food(String n) {
-	this.name = n;
-    }
-
-    public void serveFood() {
-	// TODO Auto-generated method stub
-    }
-
+class Fruits extends Food {
     @Override
-    public String toString() {
-	return "Food [getClass()=" + getClass() + ", toString()=" + super.toString() + "]";
+    public void serveFood() {
+	System.out.println("I'm serving Fruits");
+    }
+}
+
+class foodFactory extends SolutionFoodFactory {
+    public Food getFood(String string) {
+	if (string.equals("Fastfood")) {
+	    return new Fastfood();
+	} else if (string.equals("Fruits")) {
+	    return new Fruits();
+	}
+	return null;
+    }
+}
+
+class Food extends SolutionFoodFactory {
+    public void serveFood() {
+	// TODO
     }
 }

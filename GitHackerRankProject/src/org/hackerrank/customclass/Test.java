@@ -2,6 +2,8 @@ package org.hackerrank.customclass;
 
 public class Test {
     public static void main(String[] args) {
-	System.out.println(MyClass.class.getName());
+	Card card = new Card();
+	System.out.println(card);
+	System.out.println("unknown WAS EXPECTED");
     }
 }

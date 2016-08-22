@@ -16,19 +16,40 @@ public class PowerCalculate {
 	// c[a0] = in.nextInt();
 	// m[a0] = in.nextInt();
 	// }
+	// -------------------------------------------
 	String line = null;
 	List<Integer> nList = new ArrayList<>();
 	List<Integer> pList = new ArrayList<>();
-	boolean flag = true;
-	while (in.hasNextLine()) {
-	    int n = in.nextInt();
-	    int p = in.nextInt();
+	// boolean flag = true;
+	// while (in.hasNextInt()) {
+	// int n = in.nextInt();
+	// int p = in.nextInt();
+	// nList.add(n);
+	// pList.add(p);
+	// }
+	// -------------------------------------------
+	// while ((line = in.nextLine()).length() != 0) {
+	// StringTokenizer stoken = new StringTokenizer(line, "\r\t ");
+	// if (stoken.hasMoreTokens()) {
+	// nList.add(Integer.parseInt(stoken.nextToken()));
+	// pList.add(Integer.parseInt(stoken.nextToken()));
+	// }
+	// }
+	Integer n = 0, p = 0;
+	while (in.hasNextInt()) {
+	    n = in.nextInt();
+	    p = in.nextInt();
 	    nList.add(n);
 	    pList.add(p);
+	    line = in.next();
+	    if (line.length() == 0) {
+		break;
+	    }
 	}
 	in.close();
-	for (Integer i : nList) {
-	    System.out.println(i);
+	System.out.println("---------------------------------------");
+	for (int i = 0; i < nList.size(); ++i) {
+	    System.out.println(nList.get(i) + ", " + pList.get(i));
 	}
     }
 }

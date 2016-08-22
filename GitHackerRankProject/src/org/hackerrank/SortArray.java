@@ -36,7 +36,8 @@ public class SortArray {
 			enqueueCharacter(c);
 		}
 
-		// Pop/Dequeue the chars at the head of both data structures and compare them:
+		// Pop/Dequeue the chars at the head of both data structures and compare
+		// them:
 		boolean isPalindrome = true;
 		for (int i = 0; i < s.length / 2; i++) {
 			if (popCharacter() != dequeueCharacter()) {
@@ -46,8 +47,7 @@ public class SortArray {
 		}
 
 		// Finally, print whether string s is palindrome or not.
-		System.out.println("The word, " + input + ", is "
-						+ ((!isPalindrome) ? "not a palindrome." : "a palindrome."));
+		System.out.println("The word, " + input + ", is " + ((!isPalindrome) ? "not a palindrome." : "a palindrome."));
 
 	}
 

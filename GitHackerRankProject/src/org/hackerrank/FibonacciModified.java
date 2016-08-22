@@ -16,7 +16,7 @@ public class FibonacciModified {
 	}
 
 	static BigInteger getResult(BigInteger n1, BigInteger n) {
-		return n.add(n1.multiply(n1) );
+		return n.add(n1.multiply(n1));
 	}
 
 	static BigInteger getNthVal(BigInteger first, BigInteger second, int nthTerm) {

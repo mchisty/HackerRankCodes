@@ -34,8 +34,6 @@ public class QuickSort2 {
 		quickSort(ar, 0, ar.length - 1);
 	}
 
-
-
 	static int partition(int ar[], int minpos, int maxpos) {
 		int p = ar[minpos];
 		ArrayList<Integer> leftlist = new ArrayList<Integer>();

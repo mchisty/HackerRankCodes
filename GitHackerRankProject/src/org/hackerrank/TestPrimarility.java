@@ -7,11 +7,12 @@ public class TestPrimarility {
 	private static void printStats(int count, long n, boolean isPrime) {
 		String caller = Thread.currentThread().getStackTrace()[2].getMethodName();
 		System.err.println(caller + " performed " + count + " checks, determined " + n
-						+ ((isPrime) ? " is PRIME." : " is NOT PRIME."));
+				+ ((isPrime) ? " is PRIME." : " is NOT PRIME."));
 	}
 
 	/**
-	 * Better: O(n) algorithm Checks if n is divisible by any number from 2 to n/2, but is asymptotically the same as isPrimeWorst
+	 * Better: O(n) algorithm Checks if n is divisible by any number from 2 to
+	 * n/2, but is asymptotically the same as isPrimeWorst
 	 **/
 	public static boolean isPrimeLessWorst(int n) {
 		int count = 0;
@@ -32,7 +33,8 @@ public class TestPrimarility {
 	}
 
 	/**
-	 * O(n^(1/2)) Algorithm Checks if n is divisible by any number from 2 to sqrt(n).
+	 * O(n^(1/2)) Algorithm Checks if n is divisible by any number from 2 to
+	 * sqrt(n).
 	 **/
 	public static boolean isPrimeGood(int n) {
 		int count = 0;
@@ -58,8 +60,9 @@ public class TestPrimarility {
 	}
 
 	/**
-	 * Improved O( n^(1/2)) ) Algorithm Checks if n is divisible by 2 or any odd number from 3 to sqrt(n). The only way to improve on this is to check
-	 * if n is divisible by all KNOWN PRIMES from 2 to sqrt(n).
+	 * Improved O( n^(1/2)) ) Algorithm Checks if n is divisible by 2 or any odd
+	 * number from 3 to sqrt(n). The only way to improve on this is to check if
+	 * n is divisible by all KNOWN PRIMES from 2 to sqrt(n).
 	 **/
 	public static boolean isPrimeBest(int n) {
 		int count = 0;

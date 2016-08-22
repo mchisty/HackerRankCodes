@@ -27,7 +27,8 @@ public class UnsignedFlipBitSolution {
 		// }
 		// }
 		//
-		// System.out.println("Array is sorted in " + numberOfSwaps + " swaps.");
+		// System.out.println("Array is sorted in " + numberOfSwaps + "
+		// swaps.");
 		// System.out.println("First Element: " + a[0]);
 		// System.out.println("Last Element: " + a[a.length - 1]);
 

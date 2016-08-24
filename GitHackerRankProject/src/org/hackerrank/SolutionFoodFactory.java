@@ -1,18 +1,31 @@
 package org.hackerrank;
 
+/**
+ * A factory for creating SolutionFood objects.
+ */
 public class SolutionFoodFactory {
+
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 */
 	public static void main(String[] args) {
 		foodFactory myFoods = new foodFactory();
 		Food food1 = myFoods.getFood("Fastfood");
 		Food food2 = myFoods.getFood("Fruits");
-		System.out.println("My name is: " + food1.getClass().getName());
-		System.out.println("My name is: " + food2.getClass().getName());
-		System.out.println("Our superclass is: " + food1.getClass().getSuperclass().getName());
+		System.out.println("My name is: " + food1.getClass().getSimpleName());
+		System.out.println("My name is: " + food2.getClass().getSimpleName());
+		System.out.println("Our superclass is: " + food1.getClass().getSuperclass().getSimpleName());
 		food1.serveFood();
 		food2.serveFood();
 	}
 }
 
+/**
+ * The Class Fastfood.
+ */
 class Fastfood extends Food {
 	@Override
 	public void serveFood() {
@@ -20,6 +33,9 @@ class Fastfood extends Food {
 	}
 }
 
+/**
+ * The Class Fruits.
+ */
 class Fruits extends Food {
 	@Override
 	public void serveFood() {
@@ -27,7 +43,10 @@ class Fruits extends Food {
 	}
 }
 
-class foodFactory extends SolutionFoodFactory {
+/**
+ * A factory for creating food objects.
+ */
+class foodFactory { // extends SolutionFoodFactory {
 	public Food getFood(String string) {
 		if (string.equals("Fastfood")) {
 			return new Fastfood();
@@ -38,7 +57,10 @@ class foodFactory extends SolutionFoodFactory {
 	}
 }
 
-class Food extends SolutionFoodFactory {
+/**
+ * The Class Food.
+ */
+class Food { // extends SolutionFoodFactory {
 	public void serveFood() {
 		// TODO
 	}

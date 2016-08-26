@@ -1,15 +1,22 @@
 package org.hackerrank.viator;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AbsolutePrime.
+ */
 public class AbsolutePrime {
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 */
 	public static void main(String[] args) {
-		int n = 100;
+		int n = 1000000; // 100; // 15
 		List<Integer> primeNumbers = new ArrayList<>();
 		for (int i = n; i >= 2; --i) {
 			if (isPrime(i)) {
@@ -17,20 +24,24 @@ public class AbsolutePrime {
 			}
 		}
 		int max = 0;
-		SortedMap<Integer, Integer> map = new TreeMap<>();
+		int maxPrime = 0;
 		for (Integer i : primeNumbers) {
 			int sum = getSumOfDigits(i);
-			// max = Math.max(max, sum);
-			// map.put(i, max);
-			map.put(i, sum);
+			if (sum > max) {
+				max = sum;
+				maxPrime = i;
+			}
 		}
-		Iterator<Integer> it = map.keySet().iterator();
-		while (it.hasNext()) {
-			Integer key = it.next();
-			System.out.println("Prime: " + key + ", sum: " + map.get(key));
-		}
+		System.out.println("" + maxPrime);
 	}
 
+	/**
+	 * Gets the sum of digits.
+	 *
+	 * @param i
+	 *            the i
+	 * @return the sum of digits
+	 */
 	static int getSumOfDigits(int i) {
 		int sum = 0;
 		int tmp = i;
@@ -41,6 +52,13 @@ public class AbsolutePrime {
 		return sum;
 	}
 
+	/**
+	 * Checks if is prime.
+	 *
+	 * @param n
+	 *            the n
+	 * @return true, if is prime
+	 */
 	public static boolean isPrime(int n) {
 		if (n == 2) {
 			return true;

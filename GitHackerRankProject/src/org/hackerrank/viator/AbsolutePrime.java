@@ -16,7 +16,7 @@ public class AbsolutePrime {
 	 *            the arguments
 	 */
 	public static void main(String[] args) {
-		int n = 1000000; // 100; // 15
+		int n = 10000000; // 100; // 15
 		List<Integer> primeNumbers = new ArrayList<>();
 		for (int i = n; i >= 2; --i) {
 			if (isPrime(i)) {

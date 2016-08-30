@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyQuickSortTest {
+
 	MyQuickSortTest() {
 	}
 
@@ -15,11 +16,10 @@ public class MyQuickSortTest {
 	}
 
 	void quickSort(int a[], int minpos, int maxpos) {
-		if (minpos >= maxpos)
+		if (minpos >= maxpos) {
 			return;
-		// System.out.println("minpos: " + minpos + ", maxpos: " + maxpos);
+		}
 		int pivotPosition = getPartitionPos(a, minpos, maxpos);
-		// System.out.println("Pivot position: " + pivotPosition);
 		quickSort(a, minpos, pivotPosition - 1);
 		quickSort(a, pivotPosition + 1, maxpos);
 		printArray(a, minpos, maxpos);

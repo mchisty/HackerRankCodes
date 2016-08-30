@@ -2,45 +2,52 @@ package org.hackerrank;
 
 import java.util.Arrays;
 
-// Kandane's algorithm: https://en.wikipedia.org/wiki/Maximum_subarray_problem
-//---------------------
-// Pseducode:
-// ---------------------
-// def max_subarray(A):
-// max_ending_here = max_so_far = 0
-// for x in A:
-// max_ending_here = max(0, max_ending_here + x)
-// max_so_far = max(max_so_far, max_ending_here)
-// return max_so_far
-
-//-----------------------------
+/**
+ * Kandane's algorithm: https://en.wikipedia.org/wiki/Maximum_subarray_problem
+ * <br/>
+ * 
+ * Pseducode: <br/>
+ * 
+ * <code>
+ * def max_subarray(A):
+ * max_ending_here = max_so_far = 0
+ * for x in A:
+ * max_ending_here = max(0, max_ending_here + x)
+ * max_so_far = max(max_so_far, max_ending_here)
+ * return max_so_far
+ * </code>
+ * 
+ */
+/* ================================================ */
 // Sample input:
-//1
-//Sample output:
-//1 1
+// 1
+// Sample output:
+// 1 1
+/* ================================================ */
 //
-//Sample input:
-//-1 -2 -3 -4 -5 -6
-//Sample output:
-//-1 -1
+// Sample input:
+// -1 -2 -3 -4 -5 -6
+// Sample output:
+// -1 -1
 //
-//Sample input:
-//1 -2
-//Sample output:
-//1 1
-
-//Sample input:
-//1 2 3
-//Sample output:
-//6 6
-
+/* ================================================ */
+// Sample input:
+// 1 -2
+// Sample output:
+// 1 1
+/* ================================================ */
+// Sample input:
+// 1 2 3
+// Sample output:
+// 6 6
+// -10
+/* ================================================ */
 //
-//-10
-//
-//Sample input:
-//1 -1 -1 -1 -1 5
-//Sample output:
-//5 6
+// Sample input:
+// 1 -1 -1 -1 -1 5
+// Sample output:
+// 5 6
+/* ================================================ */
 
 public class MaximumSumOfSubarray {
 	public static void main(String[] args) {

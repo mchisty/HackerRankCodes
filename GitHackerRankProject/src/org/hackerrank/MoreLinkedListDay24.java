@@ -2,10 +2,24 @@ package org.hackerrank;
 
 import java.util.Scanner;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MoreLinkedListDay24.
+ */
 public class MoreLinkedListDay24 {
+
+	/**
+	 * Instantiates a new more linked list day24.
+	 */
 	public MoreLinkedListDay24() {
 	}
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 */
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		Node head = null;
@@ -21,6 +35,12 @@ public class MoreLinkedListDay24 {
 		m.display(head);
 	}
 
+	/**
+	 * Display.
+	 *
+	 * @param head
+	 *            the head
+	 */
 	public void display(Node head) {
 		Node start = head;
 		while (start != null) {
@@ -29,6 +49,15 @@ public class MoreLinkedListDay24 {
 		}
 	}
 
+	/**
+	 * Insert at end.
+	 *
+	 * @param head
+	 *            the head
+	 * @param data
+	 *            the data
+	 * @return the node
+	 */
 	public Node insertAtEnd(final Node head, int data) {
 		Node current = new Node(data);
 		if (head == null) {
@@ -45,6 +74,15 @@ public class MoreLinkedListDay24 {
 		return head;
 	}
 
+	/**
+	 * Insert1.
+	 *
+	 * @param head
+	 *            the head
+	 * @param data
+	 *            the data
+	 * @return the node
+	 */
 	// My solution to insert
 	public Node insert1(Node head, int data) {
 		if (head == null) {
@@ -59,6 +97,13 @@ public class MoreLinkedListDay24 {
 		return head;
 	}
 
+	/**
+	 * Removes the duplicates.
+	 *
+	 * @param head
+	 *            the head
+	 * @return the node
+	 */
 	// My solution to remove
 	public Node removeDuplicates(Node head) {
 		// Write your code here

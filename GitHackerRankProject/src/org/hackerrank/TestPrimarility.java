@@ -1,6 +1,9 @@
 package org.hackerrank;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class TestPrimarility {
 
@@ -67,22 +70,22 @@ public class TestPrimarility {
 	public static boolean isPrimeBest(int n) {
 		int count = 0;
 		if (n == 2) {
-			printStats(++count, n, true);
+			// printStats(++count, n, true);
 			return true;
 		} else if (n == 1 || (n & 1) == 0) {
-			printStats(++count, n, false);
+			// printStats(++count, n, false);
 			return false;
 		}
 
 		for (int i = 3; i <= Math.sqrt(n); i += 2) {
 			count++;
 			if (n % i == 0) {
-				printStats(++count, n, false);
+				// printStats(++count, n, false);
 				return false;
 			}
 		}
 		// n is prime
-		printStats(++count, n, true);
+		// printStats(++count, n, true);
 		return true;
 	}
 
@@ -110,20 +113,46 @@ public class TestPrimarility {
 				return false;
 			}
 		}
-		printStats(++count, n, true);
+		// printStats(++count, n, true);
 		return true;
 	}
 
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
+		// Scanner scan = new Scanner(System.in);
 		// int n = 2147483647; // scan.nextInt();
-		long n = 3203431780337L; // 2147483647; // scan.nextInt();
+		// long n = 3203431780337L; // 2147483647; // scan.nextInt();
 		// isPrimeLessWorst(n);
 		// isPrimeGood(n);
 		// isPrimeBest(n);
-		isMyPrime(n);
-		scan.close();
-		System.out.println();
+		// isMyPrime(n);
+		// scan.close();
+		// System.out.println();
+		int n = 100;
+
+		List<Integer> primeNumbers = new ArrayList<>();
+		Map<Integer, Integer> map = new TreeMap<>();
+		for (int i = n; i >= 2; --i) {
+			if (isPrimeBest(i)) {
+				primeNumbers.add(i);
+			}
+		}
+
+		int max = 0;
+		int max2 = 0;
+		for (Integer i : primeNumbers) {
+			int sum = 0;
+			int tmp = i;
+			while (tmp != 0) {
+				sum += tmp % 10;
+				tmp /= 10;
+			}
+			max = Math.max(max, sum);
+
+			map.put(i, max);
+		}
+
+		System.out.println("" + max);
+
 	}
 
 }

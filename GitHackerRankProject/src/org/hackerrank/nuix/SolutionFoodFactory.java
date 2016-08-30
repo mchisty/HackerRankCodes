@@ -1,4 +1,4 @@
-package org.hackerrank;
+package org.hackerrank.nuix;
 
 /**
  * A factory for creating SolutionFood objects.

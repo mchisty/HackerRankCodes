@@ -6,9 +6,60 @@ import java.util.Set;
 
 /**
  * The Class SumOfPairsInArray.
+ * 
+ * Complete the function numberOfPairs (int[] a, int k). The function must
+ * return an integer denoting the number of distinct pairs (a[i], a[j]) where
+ * i!=j in a such that a[i]+a[j]=k.
+ * 
+ * 
+ * Note: Pairs (a[i], a[j]) and (a[j], a[i]) are considered to be the same
+ * because they are both composed of the same 2 elements; however, while i!=j,
+ * the value of a[i] may be equal to a[j].
+ * 
+ * Sample Input: <br/>
+ * <code>
+ * 6 
+ * 1 
+ * 3 
+ * 46
+ * 1
+ * 3
+ * 9
+ * 47
+ * </code>
+ * 
+ * Sample output: 2
+ * 
+ * Explanation: <br/>
+ * <code>
+ * n = 6
+ * a = {1,3,46,1,3,9}
+ * k = 47
+ * 
+ * </code>
+ * 
+ * There are 4 pairs of unique elements where a[i]+a[j]=47 <br/>
+ * <code>
+ * (1) a[0]=1, a[2]=46
+ * (2) a[2]=46, a[0]=1
+ * (3) a[2]=46, a[3]=1
+ * (4) a[3]=1, a[2]=46
+ * </code>
+ * 
+ * In the above list, pairs 1 and 2 are equivalent; pairs 3 and 4 are equivalent
+ * (because they both use the same i and j). In addition, all 4 pairs contain
+ * the same values. Thus we only have 1 distinct pair.
+ * 
+ * Sample Input2: <code>
+ * n=7
+ * a = {6,6,3,9,3,5,1}
+ * k = 12
+ * </code>
+ *
+ * Output: 2
+ * 
  */
 public class SumOfPairsInArray {
-
 	/**
 	 * The main method.
 	 *
@@ -24,13 +75,11 @@ public class SumOfPairsInArray {
 		}
 		int k = in.nextInt();
 		in.close();
-
 		// =======================================
 		for (int i = 0; i < a.length; ++i) {
 			countAllSums(i, k, a);
 		}
 		System.out.println("" + testSet.size());
-
 	}
 
 	/** The test set. */
@@ -46,7 +95,7 @@ public class SumOfPairsInArray {
 	 * @param a
 	 *            the a
 	 */
-	private static void countAllSums(int indexPos, int k, int a[]) {
+	private static void countAllSums(final int indexPos, final int k, final int a[]) {
 		int n = a[indexPos];
 		for (int i = 0; i < a.length; ++i) {
 			if (indexPos != i) {
@@ -63,7 +112,6 @@ public class SumOfPairsInArray {
 	 * The Class Entry.
 	 */
 	private static class Entry {
-
 		/** The low. */
 		private final int low;
 
@@ -123,5 +171,4 @@ public class SumOfPairsInArray {
 			return true;
 		}
 	}
-
 }

@@ -77,10 +77,11 @@ public class MyHashMap<K, V> {
 			entries[index] = new MyEntry<K, V>(key, val);
 			++size;
 		} else {
-			MyEntry<K, V> previousEntry = null;
+			MyEntry<K, V> tmp = null;
 			while (current != null) {
-				previousEntry = current;
-				if (key.equals(current.key)) {
+				tmp = current;
+				if (key.equals(current.key)) { // Override/replace the existing
+												// value
 					current.value = val;
 					++size;
 					return;
@@ -88,7 +89,8 @@ public class MyHashMap<K, V> {
 					current = current.nextEntry;
 				}
 			}
-			previousEntry.nextEntry = new MyEntry<K, V>(key, val);
+			// The next entry is null
+			tmp.nextEntry = new MyEntry<K, V>(key, val);
 			++size;
 		}
 
@@ -132,30 +134,48 @@ public class MyHashMap<K, V> {
 
 	// ------------------------------------------------------------------
 	public boolean remove(K key) {
-
+		// int index = getIndexPosition(key);
+		// MyEntry<K, V> current = entries[index];
+		// if (null == current) {
+		// return false;
+		// } else {
+		// MyEntry<K, V> tmp = null;
+		// while (current != null) {
+		// if (key.equals(current.key)) {
+		// --size;
+		// if (tmp == null) {
+		// entries[index] = entries[index].nextEntry;
+		// return true;
+		// } else {
+		// tmp.nextEntry = current.nextEntry;
+		// return true;
+		// }
+		// }
+		// tmp = current;
+		// current = current.nextEntry;
+		//
+		// }
+		// }
 		int index = getIndexPosition(key);
 		MyEntry<K, V> current = entries[index];
+		MyEntry<K, V> previousEntry = null;
 		if (null == current) {
 			return false;
 		} else {
-			MyEntry<K, V> previousEntry = null;
 			while (current != null) {
-				if (key.equals(current.key)) {
-					--size;
-					if (previousEntry == null) {
-						entries[index] = entries[index].nextEntry;
-						return true;
-					} else {
-						previousEntry.nextEntry = current.nextEntry;
-						return true;
-					}
-				}
 				previousEntry = current;
-				current = current.nextEntry;
+				if (key.equals(current.key)) {
+					current = null;
+					--size;
+					return true;
+				} else {
+					current = current.nextEntry;
+				}
 			}
-
 		}
-		return false;
+		previousEntry = null;
+		--size;
+		return true;
 
 	}
 

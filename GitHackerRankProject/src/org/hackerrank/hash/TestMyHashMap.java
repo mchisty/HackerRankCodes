@@ -1,5 +1,7 @@
 package org.hackerrank.hash;
 
+import java.util.HashMap;
+
 public class TestMyHashMap {
 
 	public static void main(String[] args) {
@@ -29,7 +31,23 @@ public class TestMyHashMap {
 		// -------------------------------------------------
 		long end = System.currentTimeMillis();
 		long time = (end - start);
-		System.out.println("Time to execute: " + time);
+		// System.out.println("Time to execute: " + time);
+		System.out.println("======= Test with java hashmap ==========");
+		HashMap<Integer, String> hm = new HashMap<>();
+		hm.put(200, "Val_200000");
+		hm.put(300, "Val_30000000");
+
+		System.out.println("size: " + hm.size());
+		key = 200;
+		System.out.println("key: " + key + ", value: " + hm.get(key));
+		key = 300;
+		System.out.println("key: " + key + ", value: " + hm.get(key));
+
+		hm.remove(300);
+		System.out.println("************** after removal using java hashmap ***************");
+		System.out.println("after removal. size is: " + hm.size());
+		System.out.println("key: " + key + ", value: " + hm.get(key));
+
 	}
 
 }

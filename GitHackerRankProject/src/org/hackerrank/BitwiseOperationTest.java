@@ -21,8 +21,8 @@ public class BitwiseOperationTest {
 		System.out.println("-----------------------------------------------------------------------------------");
 		System.out.println("Bitwise and (&) examples: ");
 		System.out.println("-----------------------------------------------------------------------------------");
-		for (int i = 1; i <= 4; ++i) {
-			int j = 3;
+		for (int i = 1; i <= 20; ++i) {
+			int j = 1;
 			System.out.println("" + i + " & " + j + " : " + (i & j));
 			System.out.println("binary => " + Integer.toBinaryString(i) + " & " + Integer.toBinaryString(j) + " : "
 					+ Integer.toBinaryString(i & j));

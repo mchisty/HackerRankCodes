@@ -26,17 +26,15 @@ public class BinaryTreeTest {
 		if (root == null) {
 			root = new BNode(data);
 		} else {
-			BNode cur;
+			BNode tmp = null;
 			if (data <= root.data) {
-				cur = insert(root.left, data);
-				root.left = cur;
+				tmp = insert(root.left, data);
+				root.left = tmp;
 			} else {
-				cur = insert(root.right, data);
-				root.right = cur;
+				tmp = insert(root.right, data);
+				root.right = tmp;
 			}
 		}
-		// printInOrder(root);
-		// System.out.println();
 		return root;
 	}
 

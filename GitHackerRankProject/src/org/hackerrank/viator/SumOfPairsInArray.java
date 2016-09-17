@@ -50,10 +50,23 @@ import java.util.Set;
  * (because they both use the same i and j). In addition, all 4 pairs contain
  * the same values. Thus we only have 1 distinct pair.
  * 
- * Sample Input2: <code>
+ * <br/>
+ * 
+ * Output: 1
+ * 
+ * 
+ * 
+ * Sample Input2: 
+ * <br/>
+ * <code>
  * n=7
  * a = {6,6,3,9,3,5,1}
  * k = 12
+ * 
+ * 1. a[0]=6, a[6]=1
+ * 2. a[6]=1, a[0]=6
+ * 3. a[1]=6, a[6]=1
+ * 4. a[6]=1, a[1]=6
  * </code>
  *
  * Output: 2
@@ -79,6 +92,8 @@ public class SumOfPairsInArray {
 		for (int i = 0; i < a.length; ++i) {
 			countAllSums(i, k, a);
 		}
+		
+		
 		System.out.println("" + testSet.size());
 	}
 

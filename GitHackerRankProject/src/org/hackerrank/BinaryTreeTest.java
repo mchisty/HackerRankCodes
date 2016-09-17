@@ -26,13 +26,10 @@ public class BinaryTreeTest {
 		if (root == null) {
 			root = new BNode(data);
 		} else {
-			BNode tmp = null;
 			if (data <= root.data) {
-				tmp = insert(root.left, data);
-				root.left = tmp;
+				root.left = insert(root.left, data);
 			} else {
-				tmp = insert(root.right, data);
-				root.right = tmp;
+				root.right = insert(root.right, data);
 			}
 		}
 		return root;

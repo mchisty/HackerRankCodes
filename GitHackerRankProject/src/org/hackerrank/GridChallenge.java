@@ -1,10 +1,16 @@
 package org.hackerrank;
 
+/**
+ * Given a squared sized grid G of size N in which each cell has a lowercase letter. Denote the character in the i-th row and 
+ * in the j-th column as G[i][j].
+ * 
+ * You can perform one operation as many times as you like: Swap two column adjacent characters in the same row G[i][j] and G[i][j+1] for all 
+ * valid i,j.
+ */
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class GridChallenge {
-
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		int T = in.nextInt();
@@ -17,31 +23,27 @@ public class GridChallenge {
 			System.out.println(getResult(line));
 		}
 		in.close();
-
-		// String s = "fedcba";
-		// char[] carr = s.toCharArray();
-		// Arrays.sort(carr);
-		// String tmp = s.copyValueOf(carr);
-		// System.out.println(tmp);
-
 	}
 
 	private static String getResult(String[] lines) {
-		char c = Character.MIN_VALUE; // first char at first [0,0] position
-		for (String s : lines) {
-			char[] carr = s.toCharArray();
-			Arrays.sort(carr);
-			String tmp = String.copyValueOf(carr);
-			if (c > tmp.charAt(0)) {
-				return "NO";
-				// break;
-			} else {
-				c = tmp.charAt(0);
+		// Sort the letters in each line and populate in char array
+		int n = lines.length;
+		char[][] carr = new char[n][n];
+		for (int i = 0; i < n; ++i) {
+			carr[i] = lines[i].toCharArray();
+			Arrays.sort(carr[i]);
+		}
+		// ---------------------------------------------------------------
+		for (int j = 0; j < n; ++j) {
+			char c = Character.MIN_VALUE;
+			for (int i = 0; i < n; ++i) {
+				if (c > carr[i][j]) {
+					return "NO";
+				} else {
+					c = carr[i][j];
+				}
 			}
-
-			System.out.println("sorted: " + tmp + ", c: " + c);
 		}
 		return "YES";
 	}
-
 }

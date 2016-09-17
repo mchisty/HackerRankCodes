@@ -23,10 +23,10 @@ public class TestMyHashMap {
 		key = 300;
 		System.out.println("key: " + key + ", value: " + map.get(key));
 
-		map.remove(300);
-		System.out.println("************** after removal ***************");
-		System.out.println("after removal. size is: " + map.getSize());
-		System.out.println("key: " + key + ", value: " + map.get(key));
+//		map.remove(300);
+//		System.out.println("************** after removal ***************");
+//		System.out.println("after removal. size is: " + map.getSize());
+//		System.out.println("key: " + key + ", value: " + map.get(key));
 
 		// -------------------------------------------------
 		long end = System.currentTimeMillis();
@@ -43,10 +43,10 @@ public class TestMyHashMap {
 		key = 300;
 		System.out.println("key: " + key + ", value: " + hm.get(key));
 
-		hm.remove(300);
-		System.out.println("************** after removal using java hashmap ***************");
-		System.out.println("after removal. size is: " + hm.size());
-		System.out.println("key: " + key + ", value: " + hm.get(key));
+//		hm.remove(300);
+//		System.out.println("************** after removal using java hashmap ***************");
+//		System.out.println("after removal. size is: " + hm.size());
+//		System.out.println("key: " + key + ", value: " + hm.get(key));
 
 	}
 

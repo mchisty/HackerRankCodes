@@ -2,12 +2,21 @@ package org.hackerrank;
 
 import java.util.Scanner;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MoreLinkedListDay24.
+ * 
+ * <br/>
+ * 
+ * Task: A removeDuplicates function is declared in your editor, which takes a
+ * pointer to the node of a linked list as a parameter. Complete
+ * removeDuplicates so that it deletes any duplicate nodes from the list and
+ * returns the head of the updated list.
+ * 
+ * Note: The data elements of the linked list argument will always be in
+ * non-decreasing order.
+ * 
  */
 public class MoreLinkedListDay24 {
-
 	/**
 	 * Instantiates a new more linked list day24.
 	 */
@@ -27,11 +36,13 @@ public class MoreLinkedListDay24 {
 		MoreLinkedListDay24 m = new MoreLinkedListDay24();
 		for (int i = 0; i < T; ++i) {
 			int ele = sc.nextInt();
-			// head = insertAtEnd(head, ele);
-			head = m.insert1(head, ele);
+			head = m.insertAtEnd(head, ele);
+			// head = m.insert1(head, ele);
 		}
 		sc.close();
-		head = m.removeDuplicates(head);
+		int data = 3;
+		head = m.remove(head, data);
+		// head = m.removeDuplicates(head);
 		m.display(head);
 	}
 
@@ -98,7 +109,7 @@ public class MoreLinkedListDay24 {
 	}
 
 	/**
-	 * Removes the duplicates.
+	 * Removes the duplicates. Assume data is already sorted in ascending order.
 	 *
 	 * @param head
 	 *            the head
@@ -106,7 +117,6 @@ public class MoreLinkedListDay24 {
 	 */
 	// My solution to remove
 	public Node removeDuplicates(Node head) {
-		// Write your code here
 		if (head.next == null) {
 			return head;
 		}
@@ -115,6 +125,25 @@ public class MoreLinkedListDay24 {
 			removeDuplicates(head);
 		} else {
 			removeDuplicates(head.next);
+		}
+		return head;
+	}
+
+	// ---------------------------------------------
+	// Additional methods: just for fun
+	// ---------------------------------------------
+	Node remove(final Node head, int data) {
+		// A temporary variable used for calculation
+		Node tmp = head;
+		if (tmp.data == data) {
+			return head.next;
+		}
+		while (tmp.next != null) {
+			if (tmp.next.data == data) {
+				tmp.next = tmp.next.next;
+				return head; /* head didn't change */
+			}
+			tmp = tmp.next;
 		}
 		return head;
 	}

@@ -9,9 +9,11 @@ import java.util.Map;
 /**
  * <code>
  * 
+ * Say we have a list of items with price for the last one hour as follows:
+ * 
  * Input:
  * ========
- * Type			Price
+ * Item Type		Price
  * mx5.large		1.50
  * mx3.small		0.50
  * mx3.small		1.00
@@ -103,6 +105,10 @@ public class FindTopRevenues {
 	 *            the k
 	 */
 	private void showHigestItemsByRevenueTotal(int k) {
+		showByHashMap(k);
+	}
+
+	private void showByHashMap(int k) {
 		// Step 1: Store in map
 		Map<String, Double> map = new HashMap<>();
 		Double sum = 0.0;
@@ -137,6 +143,7 @@ public class FindTopRevenues {
 		System.out.println("-----------------------------------");
 		// To show top k items
 		topList.stream().limit(k).forEach(l -> System.out.println(l.getType() + " ==> " + l.getTotalRevenue()));
+
 	}
 
 	/**
@@ -235,7 +242,6 @@ public class FindTopRevenues {
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
-			result = prime * result + ((price == null) ? 0 : price.hashCode());
 			result = prime * result + ((type == null) ? 0 : type.hashCode());
 			return result;
 		}
@@ -257,13 +263,6 @@ public class FindTopRevenues {
 				return false;
 			}
 			AmazonItem other = (AmazonItem) obj;
-			if (price == null) {
-				if (other.price != null) {
-					return false;
-				}
-			} else if (!price.equals(other.price)) {
-				return false;
-			}
 			if (type == null) {
 				if (other.type != null) {
 					return false;

@@ -2,6 +2,7 @@ package org.hackerrank;
 
 import java.util.Scanner;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class MoreLinkedListDay24.
  * 
@@ -36,13 +37,18 @@ public class MoreLinkedListDay24 {
 		MoreLinkedListDay24 m = new MoreLinkedListDay24();
 		for (int i = 0; i < T; ++i) {
 			int ele = sc.nextInt();
-			head = m.insertAtEnd(head, ele);
-			// head = m.insert1(head, ele);
+			// head = m.insertAtEnd(head, ele);
+			head = m.insertAtTail(head, ele);
 		}
 		sc.close();
-		int data = 3;
-		head = m.remove(head, data);
+		// int data = 3;
+		// head = m.remove(head, data);
 		// head = m.removeDuplicates(head);
+
+		m.display(head);
+
+		System.out.println("Insert node at nth position");
+		m.insertNodeAtNthPostion(head, 5, 2);
 		m.display(head);
 	}
 
@@ -94,8 +100,8 @@ public class MoreLinkedListDay24 {
 	 *            the data
 	 * @return the node
 	 */
-	// My solution to insert
-	public Node insert1(Node head, int data) {
+	// My solution to insert at Tail
+	public Node insertAtTail(Node head, int data) {
 		if (head == null) {
 			head = new Node(data);
 			return head;
@@ -103,8 +109,28 @@ public class MoreLinkedListDay24 {
 		if (head.next == null) {
 			head.next = new Node(data);
 		} else {
-			insert1(head.next, data);
+			insertAtTail(head.next, data);
 		}
+		return head;
+	}
+
+	/**
+	 * Insert at head.
+	 *
+	 * @param head
+	 *            the head
+	 * @param data
+	 *            the data
+	 * @return the node
+	 */
+	public Node insertAtHead(Node head, int data) {
+		if (head == null) {
+			head = new Node(data);
+			return head;
+		}
+		Node tmp = head;
+		head = new Node(data);
+		head.next = tmp;
 		return head;
 	}
 
@@ -131,6 +157,15 @@ public class MoreLinkedListDay24 {
 
 	// ---------------------------------------------
 	// Additional methods: just for fun
+	/**
+	 * Removes the.
+	 *
+	 * @param head
+	 *            the head
+	 * @param data
+	 *            the data
+	 * @return the node
+	 */
 	// ---------------------------------------------
 	Node remove(final Node head, int data) {
 		// A temporary variable used for calculation
@@ -147,4 +182,54 @@ public class MoreLinkedListDay24 {
 		}
 		return head;
 	}
+
+	Node insertNodeAtNthPostion(Node head, int data, int position) {
+		if (head == null) {
+			head = new Node(data);
+			return head;
+		}
+		while (position > 0) {
+			insertNodeAtNthPostion(head.next, data, --position);
+		}
+		System.out.println("current head.data: " + head.data);
+		Node newNode = new Node(data);
+		newNode.next = head.next;
+
+		// head.data = data;
+		head.next = newNode;
+		return head;
+		// -------------------------
+		// Node trackedHeadNode = head;
+		//
+		// Node nodeToInsert = new Node(data);
+		//
+		// // Empty List - Returned newly created node or null
+		// if (head == null) {
+		// return nodeToInsert;
+		// }
+		//
+		// // Inserting a Node ahead of the List
+		// if (position == 0) {
+		// nodeToInsert.next = head;
+		// return nodeToInsert;
+		// }
+		//
+		// // Traverse the Singly Linked List to 1 Position Prior
+		// // Stop traversing if you reached the end of the List
+		// int currPosition = 0;
+		//
+		// while (currPosition < position - 1 && head.next != null) {
+		// head = head.next;
+		// currPosition++;
+		// }
+		//
+		// // Inserting a Node in-between a List or at the end of of a List
+		// Node nodeAtPosition = head.next;
+		// head.next = nodeToInsert;
+		// head = head.next;
+		// head.next = nodeAtPosition;
+		//
+		// return trackedHeadNode;
+	}
+
 }

@@ -41,14 +41,16 @@ public class MoreLinkedListDay24 {
 			head = m.insertAtTail(head, ele);
 		}
 		sc.close();
-		// int data = 3;
+		int data = 5;
 		// head = m.remove(head, data);
 		// head = m.removeDuplicates(head);
 
 		m.display(head);
 
-		System.out.println("Insert node at nth position");
-		m.insertNodeAtNthPostion(head, 5, 2);
+		int Nth = 1;
+		System.out.println("\nInsert node at " + Nth + "th position");
+		// head = m.insertAtHead(head, data);
+		head = m.insertNodeAtNthPostion(head, data, Nth);
 		m.display(head);
 	}
 
@@ -184,19 +186,31 @@ public class MoreLinkedListDay24 {
 	}
 
 	Node insertNodeAtNthPostion(Node head, int data, int position) {
+		if (position == 0) {
+			return insertAtHead(head, data);
+		}
 		if (head == null) {
 			head = new Node(data);
 			return head;
 		}
-		while (position > 0) {
-			insertNodeAtNthPostion(head.next, data, --position);
-		}
-		System.out.println("current head.data: " + head.data);
-		Node newNode = new Node(data);
-		newNode.next = head.next;
 
-		// head.data = data;
+		Node currentNode = head;
+		Node newNode = new Node(data);
+
+		int i = 0;
+		while (i < position - 1) {
+			head = head.next;
+			++i;
+		}
+
+		i = 0;
+		while (i < position) {
+			currentNode = currentNode.next;
+			++i;
+		}
+		newNode.next = currentNode;
 		head.next = newNode;
+
 		return head;
 		// -------------------------
 		// Node trackedHeadNode = head;

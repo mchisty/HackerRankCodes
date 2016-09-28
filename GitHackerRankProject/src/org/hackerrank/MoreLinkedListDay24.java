@@ -47,7 +47,7 @@ public class MoreLinkedListDay24 {
 
 		m.display(head);
 
-		int Nth = 0;
+		int Nth = 2;
 		System.out.println("\nInsert node at " + Nth + "th position");
 		// head = m.insertAtHead(head, data);
 		head = m.insertNodeAtNthPostion(head, data, Nth);
@@ -206,6 +206,10 @@ public class MoreLinkedListDay24 {
 			newNode.next = head;
 			return newNode;
 		}
+		// -----------------------------------------------------------------------
+		// Interesting point: head is copied in current. Now whatever action is
+		// done on current, the changes are reflected in the head
+		// -----------------------------------------------------------------------
 		Node current = head;
 		while (position - 1 > 0) {
 			current = current.next;

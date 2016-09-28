@@ -51,7 +51,9 @@ public class MoreLinkedListDay24 {
 		// System.out.println("\nInsert node at " + Nth + "th position");
 		// head = m.insertAtHead(head, data);
 		// head = m.insertNodeAtNthPostion(head, data, Nth);
-		head = m.removeNodeAtNthPostion(head, Nth);
+		// head = m.removeNodeAtNthPostion(head, Nth);
+		// m.displayReverseOrder(head);
+		head = m.reverse(head);
 		m.display(head);
 	}
 
@@ -70,7 +72,7 @@ public class MoreLinkedListDay24 {
 	}
 
 	/**
-	 * Insert at end: without recursion
+	 * Insert at end: without recursion.
 	 *
 	 * @param head
 	 *            the head
@@ -95,7 +97,7 @@ public class MoreLinkedListDay24 {
 	}
 
 	/**
-	 * Insert at end: using recursion
+	 * Insert at end: using recursion.
 	 *
 	 * @param head
 	 *            the head
@@ -220,6 +222,15 @@ public class MoreLinkedListDay24 {
 		return head;
 	}
 
+	/**
+	 * Removes the node at nth postion.
+	 *
+	 * @param head
+	 *            the head
+	 * @param position
+	 *            the position
+	 * @return the node
+	 */
 	Node removeNodeAtNthPostion(Node head, int position) {
 		if (position == 0) {
 			return head.next;
@@ -232,6 +243,21 @@ public class MoreLinkedListDay24 {
 		}
 		current.next = current.next.next;
 		return head;
+	}
+
+	Node reverse(Node head) {
+		if (head != null) {
+			reverse(head.next);
+		}
+		return head;
+
+	}
+
+	void displayReverseOrder(Node head) {
+		if (head != null) {
+			displayReverseOrder(head.next);
+			System.out.println(head.data);
+		}
 	}
 
 }

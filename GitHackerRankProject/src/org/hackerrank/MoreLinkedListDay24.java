@@ -37,20 +37,21 @@ public class MoreLinkedListDay24 {
 		MoreLinkedListDay24 m = new MoreLinkedListDay24();
 		for (int i = 0; i < T; ++i) {
 			int ele = sc.nextInt();
-			// head = m.insertAtEnd(head, ele);
-			head = m.insertAtTail(head, ele);
+			head = m.insertAtEnd(head, ele);
+			// head = m.insertAtTail(head, ele);
 		}
 		sc.close();
 		int data = 4;
 		// head = m.remove(head, data);
 		// head = m.removeDuplicates(head);
 
-		m.display(head);
+		// m.display(head);
 
-		int Nth = 2;
-		System.out.println("\nInsert node at " + Nth + "th position");
+		int Nth = 0;
+		// System.out.println("\nInsert node at " + Nth + "th position");
 		// head = m.insertAtHead(head, data);
-		head = m.insertNodeAtNthPostion(head, data, Nth);
+		// head = m.insertNodeAtNthPostion(head, data, Nth);
+		head = m.removeNodeAtNthPostion(head, Nth);
 		m.display(head);
 	}
 
@@ -69,7 +70,7 @@ public class MoreLinkedListDay24 {
 	}
 
 	/**
-	 * Insert at end.
+	 * Insert at end: without recursion
 	 *
 	 * @param head
 	 *            the head
@@ -78,23 +79,23 @@ public class MoreLinkedListDay24 {
 	 * @return the node
 	 */
 	public Node insertAtEnd(final Node head, int data) {
-		Node current = new Node(data);
+		Node newNode = new Node(data);
 		if (head == null) {
-			return current;
+			return newNode;
 		} else if (head.next == null) {
-			head.next = current;
+			head.next = newNode;
 		} else {
 			Node start = head;
 			while (start.next != null) {
 				start = start.next;
 			}
-			start.next = current;
+			start.next = newNode;
 		}
 		return head;
 	}
 
 	/**
-	 * Insert1.
+	 * Insert at end: using recursion
 	 *
 	 * @param head
 	 *            the head
@@ -102,7 +103,6 @@ public class MoreLinkedListDay24 {
 	 *            the data
 	 * @return the node
 	 */
-	// My solution to insert at Tail
 	public Node insertAtTail(Node head, int data) {
 		if (head == null) {
 			head = new Node(data);
@@ -217,6 +217,20 @@ public class MoreLinkedListDay24 {
 		}
 		newNode.next = current.next;
 		current.next = newNode;
+		return head;
+	}
+
+	Node removeNodeAtNthPostion(Node head, int position) {
+		if (position == 0) {
+			return head.next;
+		}
+		Node current = head;
+
+		while (position - 1 > 0) {
+			current = current.next;
+			position--;
+		}
+		current.next = current.next.next;
 		return head;
 	}
 

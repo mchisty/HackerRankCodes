@@ -41,13 +41,13 @@ public class MoreLinkedListDay24 {
 			head = m.insertAtTail(head, ele);
 		}
 		sc.close();
-		int data = 5;
+		int data = 4;
 		// head = m.remove(head, data);
 		// head = m.removeDuplicates(head);
 
 		m.display(head);
 
-		int Nth = 1;
+		int Nth = 0;
 		System.out.println("\nInsert node at " + Nth + "th position");
 		// head = m.insertAtHead(head, data);
 		head = m.insertNodeAtNthPostion(head, data, Nth);
@@ -197,31 +197,22 @@ public class MoreLinkedListDay24 {
 	 * @return the node
 	 */
 	Node insertNodeAtNthPostion(Node head, int data, int position) {
-		if (position == 0) {
-			return insertAtHead(head, data);
-		}
-		if (head == null) {
-			head = new Node(data);
-			return head;
-		}
-
-		Node currentNode = head;
 		Node newNode = new Node(data);
-
-		int i = 0;
-		while (i < position - 1) {
-			head = head.next;
-			++i;
+		if (head == null) {
+			return newNode;
 		}
 
-		i = 0;
-		while (i < position) {
-			currentNode = currentNode.next;
-			++i;
+		if (position == 0) {
+			newNode.next = head;
+			return newNode;
 		}
-		newNode.next = currentNode;
-		head.next = newNode;
-
+		Node current = head;
+		while (position - 1 > 0) {
+			current = current.next;
+			position--;
+		}
+		newNode.next = current.next;
+		current.next = newNode;
 		return head;
 	}
 

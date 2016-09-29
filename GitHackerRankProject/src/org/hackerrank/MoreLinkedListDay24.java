@@ -53,7 +53,7 @@ public class MoreLinkedListDay24 {
 		// head = m.insertNodeAtNthPostion(head, data, Nth);
 		// head = m.removeNodeAtNthPostion(head, Nth);
 		// m.displayReverseOrder(head);
-		head = m.reverse(head);
+		head = m.getReversedNode(head);
 		m.display(head);
 	}
 
@@ -245,19 +245,43 @@ public class MoreLinkedListDay24 {
 		return head;
 	}
 
-	Node reverse(Node head) {
-		if (head != null) {
-			reverse(head.next);
-		}
-		return head;
-
-	}
-
 	void displayReverseOrder(Node head) {
 		if (head != null) {
 			displayReverseOrder(head.next);
 			System.out.println(head.data);
 		}
+	}
+
+	Node getReversedNode(Node head) {
+		// With recursion
+		// if (head == null || head.next == null) {
+		// return head;
+		// }
+		// Node second = head.next;
+		// head.next = null;
+		// Node tmp = getReversedNode(second);
+		// System.out.println("second: " + second.data + ", head:" + head.data);
+		// second.next = head;
+		// return tmp;
+		// -------------------------------------
+		// Without recursion
+		if (head == null || head.next == null) {
+			return head;
+		}
+
+		Node p1 = head;
+		Node p2 = p1.next;
+
+		head.next = null;
+		while (p1 != null && p2 != null) {
+			Node t = p2.next;
+			p2.next = p1;
+			p1 = p2;
+			p2 = t;
+		}
+
+		return p1;
+
 	}
 
 }

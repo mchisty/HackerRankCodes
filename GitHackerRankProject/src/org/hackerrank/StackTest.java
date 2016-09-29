@@ -71,7 +71,9 @@ public class StackTest {
 	// --------------------------------------------
 	static class MyStack {
 		private final char stackArray[];
+
 		private final int arraySize;
+
 		private int pos = -1;
 
 		MyStack(String s) {
@@ -88,7 +90,7 @@ public class StackTest {
 		// public int getPos() {
 		// return pos;
 		// }
-		int pop() {
+		char pop() {
 			return stackArray[pos--];
 		}
 

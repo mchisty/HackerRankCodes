@@ -19,9 +19,11 @@ public class QuickSortLomutoPartition {
 	}
 
 	public static void main(String[] args) {
-		int[] a = { 1, 3, 9, 8, 2, 7, 5 };
+		// int[] a = { 1, 3, 9, 8, 2, 7, 5 };
+		int[] a = { 3, 4, 7, 5, 1, 2 };
 		QuickSortLomutoPartition qs = new QuickSortLomutoPartition();
 		qs.sort(a);
+		qs.printArray(a);
 		System.out.println("Count pivot moves: " + qs.countPivotMoves);
 	}
 
@@ -29,10 +31,10 @@ public class QuickSortLomutoPartition {
 		quicksort(a, 0, a.length - 1);
 	}
 
-	private void quicksort(int[] a, int p, int r) {
+	private void quicksort(final int[] a, int p, int r) {
 		if (p < r) { // nothing to do if the subarray has fewer than 2 elements
 			int q = partition(a, p, r); // q is pivot position
-			printArray(a);
+			// printArray(a);
 			quicksort(a, p, q - 1); // recursively sort a[p..q-1]
 			quicksort(a, q + 1, r); // recursively sort a[q+1..r]
 		}
@@ -40,7 +42,7 @@ public class QuickSortLomutoPartition {
 
 	int countPivotMoves = 0;
 
-	protected int partition(int[] a, int p, int r) {
+	protected int partition(final int[] a, int p, int r) {
 		int pivot = a[r]; // the value we pivot around
 		int i = p - 1; // i is index into left side
 		for (int j = p; j < r; j++) { // j is index into right side

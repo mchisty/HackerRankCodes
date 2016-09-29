@@ -7,8 +7,17 @@ import java.util.Scanner;
 //5
 //4 8 3 7 2
 //---------------------
+/**
+ * The Class QuickSort1.
+ */
 // output: 3 2 4 5 7
 public class QuickSort1 {
+	/**
+	 * Partition.
+	 *
+	 * @param ar
+	 *            the ar
+	 */
 	static void partition(int[] ar) {
 		int p = ar[0];
 		List<Integer> left = new ArrayList<>();
@@ -23,14 +32,23 @@ public class QuickSort1 {
 		List<Integer> result = new ArrayList<>();
 		result.addAll(left);
 		result.addAll(right);
+		// System.out.println("Left list: " + left.toString() + " Right list: "
+		// + right.toString());
 		int[] x = new int[left.size() + right.size()];
 		int i = 0;
 		for (Integer r : result) {
 			x[i++] = r;
+			// System.out.println(" -> " + r);
 		}
 		printArray(x);
 	}
 
+	/**
+	 * Prints the array.
+	 *
+	 * @param ar
+	 *            the ar
+	 */
 	static void printArray(int[] ar) {
 		for (int n : ar) {
 			System.out.print(n + " ");
@@ -38,6 +56,12 @@ public class QuickSort1 {
 		System.out.println("");
 	}
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 */
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		int n = in.nextInt();

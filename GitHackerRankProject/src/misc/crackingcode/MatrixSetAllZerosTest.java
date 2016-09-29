@@ -2,7 +2,7 @@ package misc.crackingcode;
 
 public class MatrixSetAllZerosTest {
 	public static void main(String[] args) {
-		int matrix[][] = { { 1, 2, 1, 1 }, { 1, 2, 3, 0 }, { 1, 2, 4, 5 } };
+		int matrix[][] = { { 1, 2, 1, 1 }, { 0, 2, 3, 0 }, { 1, 2, 4, 5 } };
 		for (int i = 0; i < matrix.length; ++i) {
 			for (int j = 0; j < matrix[0].length; ++j) {
 				System.out.print(matrix[i][j] + " ");

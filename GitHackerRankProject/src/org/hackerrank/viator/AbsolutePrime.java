@@ -3,10 +3,11 @@ package org.hackerrank.viator;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * The Class AbsolutePrime. Given a number N, check all the prime numbers smaller than N and return the one whose sum of absolute values is the biggest.
- * E.G. In the number 15, there are prime numbers like 2, 3, 5, 7, 11 and 13. Among those, the sum of 1+3 (13) is the biggest.
+ * The Class AbsolutePrime. Given a number N, check all the prime numbers
+ * smaller than N and return the one whose sum of absolute values is the
+ * biggest. E.G. In the number 15, there are prime numbers like 2, 3, 5, 7, 11
+ * and 13. Among those, the sum of 1+3 (13) is the biggest.
  * 
  */
 public class AbsolutePrime {
@@ -63,7 +64,9 @@ public class AbsolutePrime {
 	public static boolean isPrime(int n) {
 		if (n == 2) {
 			return true;
-		} else if (n == 1 || (n & 1) == 0) {
+		} else if (n == 1) {
+			return false;
+		} else if ((n & 1) == 0) { // If even
 			return false;
 		}
 		for (int i = 3; i <= Math.sqrt(n); i += 2) {

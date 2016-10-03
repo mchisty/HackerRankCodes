@@ -19,7 +19,7 @@ public class BitwiseOperationTest {
 			System.out.println(y + " right shift (>>) " + i + " time(s): " + (y >> i));
 		}
 		System.out.println("-----------------------------------------------------------------------------------");
-		System.out.println("Bitwise and (&) examples: ");
+		System.out.println("Bitwise and (&) examples (Useful for testing even/odd number)): ");
 		System.out.println("-----------------------------------------------------------------------------------");
 		for (int i = 1; i <= 20; ++i) {
 			int j = 1;
@@ -43,7 +43,6 @@ public class BitwiseOperationTest {
 				+ " : " + Integer.toBinaryString(a ^ b));
 		System.out.println("hex => " + Integer.toHexString(a) + " ^ " + Integer.toHexString(b) + " : "
 				+ Integer.toHexString(a ^ b));
-
 		System.out.println("-----------------------------------------------------------------------------------");
 		System.out.println("The unsigned right shift operator (>>>) shifts a zero into the leftmost position,");
 		System.out.println("If number is negative, then it adds 1 into left most position, otherwise it adds zero");
@@ -55,6 +54,5 @@ public class BitwiseOperationTest {
 			System.out.println("[Explanation] binary ===> " + Integer.toBinaryString(i) + " >>> "
 					+ Integer.toBinaryString(j) + " = " + Integer.toBinaryString(i >>> j));
 		}
-
 	}
 }

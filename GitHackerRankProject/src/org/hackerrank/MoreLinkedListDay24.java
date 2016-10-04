@@ -2,6 +2,7 @@ package org.hackerrank;
 
 import java.util.Scanner;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class MoreLinkedListDay24.
  * 
@@ -37,12 +38,22 @@ public class MoreLinkedListDay24 {
 		for (int i = 0; i < T; ++i) {
 			int ele = sc.nextInt();
 			head = m.insertAtEnd(head, ele);
-			// head = m.insert1(head, ele);
+			// head = m.insertAtTail(head, ele);
 		}
 		sc.close();
-		int data = 3;
-		head = m.remove(head, data);
+		int data = 4;
+		// head = m.remove(head, data);
 		// head = m.removeDuplicates(head);
+
+		// m.display(head);
+
+		int Nth = 0;
+		// System.out.println("\nInsert node at " + Nth + "th position");
+		// head = m.insertAtHead(head, data);
+		// head = m.insertNodeAtNthPostion(head, data, Nth);
+		// head = m.removeNodeAtNthPostion(head, Nth);
+		// m.displayReverseOrder(head);
+		head = m.getReversedNode(head);
 		m.display(head);
 	}
 
@@ -61,7 +72,7 @@ public class MoreLinkedListDay24 {
 	}
 
 	/**
-	 * Insert at end.
+	 * Insert at end: without recursion.
 	 *
 	 * @param head
 	 *            the head
@@ -70,23 +81,23 @@ public class MoreLinkedListDay24 {
 	 * @return the node
 	 */
 	public Node insertAtEnd(final Node head, int data) {
-		Node current = new Node(data);
+		Node newNode = new Node(data);
 		if (head == null) {
-			return current;
+			return newNode;
 		} else if (head.next == null) {
-			head.next = current;
+			head.next = newNode;
 		} else {
 			Node start = head;
 			while (start.next != null) {
 				start = start.next;
 			}
-			start.next = current;
+			start.next = newNode;
 		}
 		return head;
 	}
 
 	/**
-	 * Insert1.
+	 * Insert at end: using recursion.
 	 *
 	 * @param head
 	 *            the head
@@ -94,8 +105,7 @@ public class MoreLinkedListDay24 {
 	 *            the data
 	 * @return the node
 	 */
-	// My solution to insert
-	public Node insert1(Node head, int data) {
+	public Node insertAtTail(Node head, int data) {
 		if (head == null) {
 			head = new Node(data);
 			return head;
@@ -103,8 +113,28 @@ public class MoreLinkedListDay24 {
 		if (head.next == null) {
 			head.next = new Node(data);
 		} else {
-			insert1(head.next, data);
+			insertAtTail(head.next, data);
 		}
+		return head;
+	}
+
+	/**
+	 * Insert at head.
+	 *
+	 * @param head
+	 *            the head
+	 * @param data
+	 *            the data
+	 * @return the node
+	 */
+	public Node insertAtHead(Node head, int data) {
+		if (head == null) {
+			head = new Node(data);
+			return head;
+		}
+		Node tmp = head;
+		head = new Node(data);
+		head.next = tmp;
 		return head;
 	}
 
@@ -131,6 +161,15 @@ public class MoreLinkedListDay24 {
 
 	// ---------------------------------------------
 	// Additional methods: just for fun
+	/**
+	 * Removes the.
+	 *
+	 * @param head
+	 *            the head
+	 * @param data
+	 *            the data
+	 * @return the node
+	 */
 	// ---------------------------------------------
 	Node remove(final Node head, int data) {
 		// A temporary variable used for calculation
@@ -147,4 +186,102 @@ public class MoreLinkedListDay24 {
 		}
 		return head;
 	}
+
+	/**
+	 * Insert node at nth postion.
+	 *
+	 * @param head
+	 *            the head
+	 * @param data
+	 *            the data
+	 * @param position
+	 *            the position
+	 * @return the node
+	 */
+	Node insertNodeAtNthPostion(Node head, int data, int position) {
+		Node newNode = new Node(data);
+		if (head == null) {
+			return newNode;
+		}
+
+		if (position == 0) {
+			newNode.next = head;
+			return newNode;
+		}
+		// -----------------------------------------------------------------------
+		// Interesting point: head is copied in current. Now whatever action is
+		// done on current, the changes are reflected in the head
+		// -----------------------------------------------------------------------
+		Node current = head;
+		while (position - 1 > 0) {
+			current = current.next;
+			position--;
+		}
+		newNode.next = current.next;
+		current.next = newNode;
+		return head;
+	}
+
+	/**
+	 * Removes the node at nth postion.
+	 *
+	 * @param head
+	 *            the head
+	 * @param position
+	 *            the position
+	 * @return the node
+	 */
+	Node removeNodeAtNthPostion(Node head, int position) {
+		if (position == 0) {
+			return head.next;
+		}
+		Node current = head;
+
+		while (position - 1 > 0) {
+			current = current.next;
+			position--;
+		}
+		current.next = current.next.next;
+		return head;
+	}
+
+	void displayReverseOrder(Node head) {
+		if (head != null) {
+			displayReverseOrder(head.next);
+			System.out.println(head.data);
+		}
+	}
+
+	Node getReversedNode(Node head) {
+		// With recursion
+		// if (head == null || head.next == null) {
+		// return head;
+		// }
+		// Node second = head.next;
+		// head.next = null;
+		// Node tmp = getReversedNode(second);
+		// System.out.println("second: " + second.data + ", head:" + head.data);
+		// second.next = head;
+		// return tmp;
+		// -------------------------------------
+		// Without recursion
+		if (head == null || head.next == null) {
+			return head;
+		}
+
+		Node p1 = head;
+		Node p2 = p1.next;
+
+		head.next = null;
+		while (p1 != null && p2 != null) {
+			Node t = p2.next;
+			p2.next = p1;
+			p1 = p2;
+			p2 = t;
+		}
+
+		return p1;
+
+	}
+
 }

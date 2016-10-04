@@ -4,9 +4,35 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+/**
+ *
+ * <code>
+ 6
+ 
+12
+4
+5
+3
+8
+7
+ * </code>
+ * 
+ * Output: <code>
+
+12.0
+8.0
+5.0
+4.5
+5.0
+6.0
+
+ </code>
+ *
+ */
 public class RunningMedian {
 	public static void main(String[] args) {
 		// int a = 1, b = 2;
@@ -22,8 +48,65 @@ public class RunningMedian {
 		in.close();
 		// --------------------------------
 		RunningMedian r = new RunningMedian();
-		List<Float> l = r.getAllMedians(a);
+		// r.calculateMediansWithBruteForceSolution(a);
+		// --------------------------------
+		r.calculateMediansWithOptimizedSolution(a);
+
+	}
+
+	void calculateMediansWithOptimizedSolution(int[] a) {
+		for (int i = 0; i < a.length; ++i) {
+			add(a[i]);
+			showMedian();
+		}
+	}
+
+	PriorityQueue<Integer> minHeap = new PriorityQueue<>(10, (Integer i1, Integer i2) -> i2 - i1); // Descending
+	PriorityQueue<Integer> maxHeap = new PriorityQueue<>(10); // Ascending
+
+	void add(int a) {
+		if (maxHeap.isEmpty()) {
+			maxHeap.add(a);
+		} else {
+			int current = maxHeap.peek();
+			if (a < current) {
+				minHeap.add(a);
+			} else {
+				maxHeap.add(a);
+			}
+		}
+		// balance
+		balanceQueues();
+	}
+
+	void balanceQueues() {
+		if (maxHeap.size() + 1 < minHeap.size()) {
+			int num = minHeap.poll();
+			maxHeap.add(num);
+		} else if (minHeap.size() + 1 < maxHeap.size()) {
+			int num = maxHeap.poll();
+			minHeap.add(num);
+		}
+	}
+
+	void showMedian() {
+		int size = maxHeap.size() + minHeap.size();
+		if (size % 2 == 0) {
+			int num1 = maxHeap.peek();
+			int num2 = minHeap.peek();
+			float median = (num1 + num2) / 2f;
+			System.out.println(median);
+		} else {
+			float median = maxHeap.size() > minHeap.size() ? maxHeap.peek() : minHeap.peek();
+			System.out.println(median);
+		}
+
+	}
+
+	void calculateMediansWithBruteForceSolution(int[] a) {
+		List<Float> l = getAllMedians(a);
 		l.stream().forEach(i -> System.out.println(i));
+
 	}
 
 	List<Float> getAllMedians(int a[]) {

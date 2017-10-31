@@ -3,7 +3,7 @@ package misc.crackingcode;
 /**
  * Implement a method to perform basic string compression using the counts of
  * repeated characters. For example, the string aabcccccaaa would become
- * a2blc5a3.
+ * a2bc5a3.
  * 
  */
 public class CompressStringTest {
@@ -32,23 +32,21 @@ public class CompressStringTest {
 		StringBuilder sb = new StringBuilder();
 		char first = s.charAt(0);
 		char c[] = s.toCharArray();
-		for (int i = 1; i < s.length(); ++i) {
+		for (int i = 1; i < c.length; ++i) {
 			if (c[i] == first) {
 				++count;
 			} else {
-				if (count == 1) {
-					sb.append(first);
-				} else {
-					sb.append(first).append(count);
+				sb.append(first);
+				if (count > 1) {
+					sb.append(count);
 				}
-				count = 1;
 				first = c[i];
+				count = 1;
 			}
 		}
-		if (count == 1) {
-			sb.append(first);
-		} else {
-			sb.append(first).append(count);
+		sb.append(first);
+		if (count > 1) {
+			sb.append(count);
 		}
 		return sb.toString();
 	}

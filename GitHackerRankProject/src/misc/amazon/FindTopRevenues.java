@@ -122,9 +122,6 @@ public class FindTopRevenues {
 			map.put(ai.getType(), sum);
 		}
 
-		// map.forEach((type, revenue) -> System.out.println(type + ", " +
-		// revenue));
-
 		// Step 2: Store from map -> list
 		List<UpdatedItem> topList = new ArrayList<>();
 		for (Map.Entry<String, Double> entry : map.entrySet()) {
@@ -139,7 +136,7 @@ public class FindTopRevenues {
 		topList.forEach(l -> System.out.println(l.getType() + " ==> " + l.getTotalRevenue()));
 
 		System.out.println("-----------------------------------");
-		System.out.println("Display top k items as sorted ");
+		System.out.println("Display top " + k + " items as sorted ");
 		System.out.println("-----------------------------------");
 		// To show top k items
 		topList.stream().limit(k).forEach(l -> System.out.println(l.getType() + " ==> " + l.getTotalRevenue()));

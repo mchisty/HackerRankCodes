@@ -1,3 +1,4 @@
+
 package misc.amazon;
 
 import java.util.ArrayList;
@@ -61,7 +62,6 @@ import java.util.Map;
  * 
  *
  */
-
 public class FindTopRevenues {
 
 	/** The list. */
@@ -96,6 +96,10 @@ public class FindTopRevenues {
 		list.add(new AmazonItem("mx4", 0.40));
 		list.add(new AmazonItem("mx5", 0.50));
 		list.add(new AmazonItem("mx6", 0.60));
+		System.out.println("-----------------------------------");
+		System.out.println("Show initial list of all items ");
+		System.out.println("-----------------------------------");
+		list.forEach(ai -> System.out.println(ai.type + " ==> " + ai.price));
 	}
 
 	/**
@@ -121,26 +125,22 @@ public class FindTopRevenues {
 			}
 			map.put(ai.getType(), sum);
 		}
-
 		// Step 2: Store from map -> list
 		List<UpdatedItem> topList = new ArrayList<>();
 		for (Map.Entry<String, Double> entry : map.entrySet()) {
 			topList.add(new UpdatedItem(entry.getKey(), entry.getValue()));
 		}
-
 		// Step 3: Sort the list
 		topList.sort((UpdatedItem a1, UpdatedItem a2) -> a2.totalRevenue.compareTo(a1.totalRevenue));
 		System.out.println("-----------------------------------");
 		System.out.println("Display all items as sorted ");
 		System.out.println("-----------------------------------");
 		topList.forEach(l -> System.out.println(l.getType() + " ==> " + l.getTotalRevenue()));
-
 		System.out.println("-----------------------------------");
 		System.out.println("Display top " + k + " items as sorted ");
 		System.out.println("-----------------------------------");
 		// To show top k items
 		topList.stream().limit(k).forEach(l -> System.out.println(l.getType() + " ==> " + l.getTotalRevenue()));
-
 	}
 
 	/**
@@ -185,7 +185,6 @@ public class FindTopRevenues {
 		public Double getTotalRevenue() {
 			return totalRevenue;
 		}
-
 	}
 
 	/**
@@ -269,7 +268,5 @@ public class FindTopRevenues {
 			}
 			return true;
 		}
-
 	}
-
 }

@@ -40,23 +40,23 @@ public class LinkedListAdd {
 		}
 	}
 
-	private MyLinkedList getSum(MyLinkedList l_1, MyLinkedList l_2, int carry) {
+	private MyLinkedList getSum(MyLinkedList firstList, MyLinkedList secondList, int carry) {
 		// Use mod 10 to find the carry over
-		if (l_1 == null && l_2 == null) {
+		if (firstList == null && secondList == null) {
 			return null;
 		}
 		int value = carry;
-		if (l_1 != null) {
-			value += l_1.data;
+		if (firstList != null) {
+			value += firstList.data;
 		}
-		if (l_2 != null) {
-			value += l_2.data;
+		if (secondList != null) {
+			value += secondList.data;
 		}
 		if (null == resultList) {
 			resultList = new MyLinkedList(value % 10);
 		}
-		if (l_1 != null || l_2 != null) {
-			resultList.next = getSum(l_1 == null ? null : l_1.next, l_2 == null ? null : l_2.next, value >= 10 ? 1 : 0);
+		if (firstList != null || secondList != null) {
+			resultList.next = getSum(firstList == null ? null : firstList.next, secondList == null ? null : secondList.next, value >= 10 ? 1 : 0);
 		}
 		return resultList;
 	}

@@ -10,9 +10,7 @@ import java.util.stream.Collectors;
 
 /**
  *
- * <code>
- 6
- 
+ * Input: <code>
 12
 4
 5
@@ -29,15 +27,24 @@ import java.util.stream.Collectors;
 4.5
 5.0
 6.0
-
  </code>
  *
  */
 public class RunningMedian {
+
+	/** The min heap. */
+	PriorityQueue<Integer> minHeap = new PriorityQueue<>(10, (Integer i1, Integer i2) -> i2 - i1); // Descending
+
+	/** The max heap. */
+	PriorityQueue<Integer> maxHeap = new PriorityQueue<>(10); // Ascending
+
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 */
 	public static void main(String[] args) {
-		// int a = 1, b = 2;
-		// float r = (a + b) / 2f;
-		// System.out.println(r);
 		// --------------------------------------
 		Scanner in = new Scanner(System.in);
 		int n = in.nextInt();
@@ -54,6 +61,12 @@ public class RunningMedian {
 
 	}
 
+	/**
+	 * Calculate medians with optimized solution.
+	 *
+	 * @param a
+	 *            the a
+	 */
 	void calculateMediansWithOptimizedSolution(int[] a) {
 		for (int i = 0; i < a.length; ++i) {
 			add(a[i]);
@@ -61,54 +74,75 @@ public class RunningMedian {
 		}
 	}
 
-	PriorityQueue<Integer> minHeap = new PriorityQueue<>(10, (Integer i1, Integer i2) -> i2 - i1); // Descending
-	PriorityQueue<Integer> maxHeap = new PriorityQueue<>(10); // Ascending
-
-	void add(int a) {
+	/**
+	 * Adds the.
+	 *
+	 * @param newItem
+	 *            the new item
+	 */
+	void add(int newItem) {
 		if (maxHeap.isEmpty()) {
-			maxHeap.add(a);
+			maxHeap.add(newItem);
 		} else {
-			int current = maxHeap.peek();
-			if (a < current) {
-				minHeap.add(a);
+			int head = maxHeap.peek();
+			if (newItem < head) {
+				minHeap.add(newItem);
 			} else {
-				maxHeap.add(a);
+				maxHeap.add(newItem);
 			}
 		}
 		// balance
 		balanceQueues();
 	}
 
+	/**
+	 * Balance queues.
+	 */
 	void balanceQueues() {
 		if (maxHeap.size() + 1 < minHeap.size()) {
-			int num = minHeap.poll();
-			maxHeap.add(num);
+			int headMinheap = minHeap.poll();
+			maxHeap.add(headMinheap);
 		} else if (minHeap.size() + 1 < maxHeap.size()) {
-			int num = maxHeap.poll();
-			minHeap.add(num);
+			int headMaxheap = maxHeap.poll();
+			minHeap.add(headMaxheap);
 		}
 	}
 
+	/**
+	 * Show median.
+	 */
 	void showMedian() {
 		int size = maxHeap.size() + minHeap.size();
 		if (size % 2 == 0) {
-			int num1 = maxHeap.peek();
-			int num2 = minHeap.peek();
-			float median = (num1 + num2) / 2f;
+			int headMax = maxHeap.peek();
+			int headMin = minHeap.peek();
+			float median = (headMax + headMin) / 2f;
 			System.out.println(median);
 		} else {
 			float median = maxHeap.size() > minHeap.size() ? maxHeap.peek() : minHeap.peek();
 			System.out.println(median);
 		}
-
 	}
 
+	// ------------------------------------------------------------------------------
+	// Note: Not a recommended approach
+	// ------------------------------------------------------------------------------
+	/**
+	 * Calculate medians with brute force solution.
+	 *
+	 */
 	void calculateMediansWithBruteForceSolution(int[] a) {
 		List<Float> l = getAllMedians(a);
 		l.stream().forEach(i -> System.out.println(i));
-
 	}
 
+	/**
+	 * Gets the all medians.
+	 *
+	 * @param a
+	 *            the a
+	 * @return the all medians
+	 */
 	List<Float> getAllMedians(int a[]) {
 		List<Float> medianList = new ArrayList<>();
 		List<Integer> list = Arrays.stream(a).boxed().collect(Collectors.toList());
@@ -119,6 +153,13 @@ public class RunningMedian {
 		return medianList;
 	}
 
+	/**
+	 * Gets the median val.
+	 *
+	 * @param list
+	 *            the list
+	 * @return the median val
+	 */
 	private Float getMedianVal(List<Integer> list) {
 		if (list.size() == 1) {
 			return list.get(0).floatValue();
@@ -134,4 +175,5 @@ public class RunningMedian {
 			return list.get(pos).floatValue();
 		}
 	}
+
 }

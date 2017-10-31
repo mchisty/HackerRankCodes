@@ -7,8 +7,9 @@ public class BitwiseOperationTest {
 		System.out.println("Signed left shift operation. For every bit shift, the number doubles up");
 		System.out.println("Number is represented in 32 bit e.g. 3 = 00000000 00000000 00000000 00000011");
 		System.out.println("-----------------------------------------------------------------------------------");
-		for (int i = 1; i <= 5; ++i) {
-			System.out.println(x + " left shift (<<) " + i + " time(s): " + (x << i));
+		for (long i = 1; i <= 5; ++i) {
+			long k = (x << i);
+			System.out.println("Number (" + x + ") left shift (<<) " + i + " time(s): " + k);
 		}
 		final int y = 9;
 		System.out.println("-----------------------------------------------------------------------------------");
@@ -21,8 +22,8 @@ public class BitwiseOperationTest {
 		System.out.println("-----------------------------------------------------------------------------------");
 		System.out.println("Bitwise and (&) examples (Useful for testing even/odd number)): ");
 		System.out.println("-----------------------------------------------------------------------------------");
-		for (int i = 1; i <= 20; ++i) {
-			int j = 1;
+		for (int i = 1; i <= 5; ++i) {
+			final int j = 1;
 			System.out.println("" + i + " & " + j + " : " + (i & j));
 			System.out.println("binary => " + Integer.toBinaryString(i) + " & " + Integer.toBinaryString(j) + " : "
 					+ Integer.toBinaryString(i & j));
@@ -54,5 +55,15 @@ public class BitwiseOperationTest {
 			System.out.println("[Explanation] binary ===> " + Integer.toBinaryString(i) + " >>> "
 					+ Integer.toBinaryString(j) + " = " + Integer.toBinaryString(i >>> j));
 		}
+
+		System.out.println("-----------------------------------------------------------------------------------");
+		System.out.println("The n & 0x1 test");
+		System.out.println("-----------------------------------------------------------------------------------");
+		for (int k = 0; k <= 10; ++k) {
+			final int i = (k & 0x1);
+			// final int i = (k & 1);
+			System.out.println("" + k + " & 0x1 =  " + i);
+		}
+
 	}
 }

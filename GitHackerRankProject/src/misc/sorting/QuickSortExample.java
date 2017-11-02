@@ -11,6 +11,12 @@ import java.util.stream.IntStream;
  * (smaller than x) before x, and put all greater elements (greater than x)
  * after x.
  * 
+ * This approach takes last element as pivot. If the last element is chosen as
+ * pivot and if the array is already sorted, then the worst case time complexity
+ * arises. The worst case time complexity is O(n^2)
+ * 
+ * (The best case is O(n*log n) when middle element is chosen as pivot)
+ * 
  * @author isadmlc
  *
  */

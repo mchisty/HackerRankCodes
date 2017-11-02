@@ -52,11 +52,11 @@ public class QuickSortExample2 {
 				rightPos--;
 			}
 			if (leftPos <= rightPos) {
-				System.out.println("leftPos:" + leftPos + " a[leftPos]: " + a[leftPos] + " <=======> rightPos:"
-						+ rightPos + " a[rightPos]: " + a[rightPos] + ". high: " + high + ", low: " + low);
-				if (leftPos < rightPos) {
-					swap(leftPos, rightPos);
-				}
+				// System.out.println("leftPos:" + leftPos + " a[leftPos]: " +
+				// a[leftPos] + " <=======> rightPos:"
+				// + rightPos + " a[rightPos]: " + a[rightPos] + ". high: " +
+				// high + ", low: " + low);
+				swap(leftPos, rightPos);
 				leftPos++;
 				rightPos--;
 			}

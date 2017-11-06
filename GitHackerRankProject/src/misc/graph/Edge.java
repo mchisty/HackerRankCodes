@@ -1,16 +1,21 @@
+
 package misc.graph;
 
 public class Edge {
-	private String id;
-	private Vertex src;
-	private Vertex dest;
-	private int duration;
 
-	public Edge(String id, Vertex src, Vertex dest, int duration) {
+	private String id;
+
+	private Vertex src;
+
+	private Vertex dest;
+
+	private int weight;
+
+	public Edge(String id, Vertex src, Vertex dest, int weight) {
 		this.id = id;
 		this.src = src;
 		this.dest = dest;
-		this.duration = duration;
+		this.weight = weight;
 	}
 
 	public String getId() {
@@ -37,12 +42,12 @@ public class Edge {
 		this.dest = dest;
 	}
 
-	public int getDuration() {
-		return duration;
+	public int getWeight() {
+		return weight;
 	}
 
-	public void setDuration(int duration) {
-		this.duration = duration;
+	public void setWeight(int weight) {
+		this.weight = weight;
 	}
 
 	@Override
@@ -50,9 +55,9 @@ public class Edge {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((dest == null) ? 0 : dest.hashCode());
-		result = prime * result + duration;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((src == null) ? 0 : src.hashCode());
+		result = prime * result + weight;
 		return result;
 	}
 
@@ -75,9 +80,6 @@ public class Edge {
 		} else if (!dest.equals(other.dest)) {
 			return false;
 		}
-		if (duration != other.duration) {
-			return false;
-		}
 		if (id == null) {
 			if (other.id != null) {
 				return false;
@@ -92,7 +94,9 @@ public class Edge {
 		} else if (!src.equals(other.src)) {
 			return false;
 		}
+		if (weight != other.weight) {
+			return false;
+		}
 		return true;
 	}
-
 }

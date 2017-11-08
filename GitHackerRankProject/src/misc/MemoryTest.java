@@ -4,6 +4,20 @@ package misc;
 public class MemoryTest {
 
 	public static void main(String[] args) {
+		checkIdentityAndEquality();
+		checkImmutability();
+	}
+
+	private static void checkImmutability() {
+		String a = "test";
+		String b = a;
+		System.out.println("-----------------------------------");
+		System.out.println("Initial a:" + a + "; Initial b:" + b);
+		a = a.toUpperCase();
+		System.out.println("a updated:" + a + "; Value of b:" + b);
+	}
+
+	private static void checkIdentityAndEquality() {
 		final String a = "ABC";
 		showValue("a", a);
 		String b = a;

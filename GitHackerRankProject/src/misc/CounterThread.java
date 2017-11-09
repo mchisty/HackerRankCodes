@@ -1,4 +1,4 @@
-package org.chisty.thread;
+package misc;
 
 public class CounterThread extends Thread {
 	protected Countersync counter = null;

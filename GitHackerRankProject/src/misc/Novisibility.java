@@ -1,4 +1,4 @@
-package org.chisty.thread;
+package misc;
 
 /**
  * Two threads, the main thread and the ReaderThread thread, access the shared

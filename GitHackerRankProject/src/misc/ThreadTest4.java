@@ -1,4 +1,4 @@
-package org.chisty.thread;
+package misc;
 
 public class ThreadTest4 implements Runnable {
 

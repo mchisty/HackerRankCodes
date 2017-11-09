@@ -1,4 +1,4 @@
-package org.chisty.thread;
+package misc;
 
 public class ThreadTest3 extends Thread {
 	int id;

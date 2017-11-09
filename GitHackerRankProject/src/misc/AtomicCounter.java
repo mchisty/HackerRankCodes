@@ -1,4 +1,4 @@
-package org.chisty.thread;
+package misc;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

@@ -1,4 +1,4 @@
-package org.chisty.thread;
+package misc;
 
 /**
  * Testing synchronization on a method of the {@link Table} class

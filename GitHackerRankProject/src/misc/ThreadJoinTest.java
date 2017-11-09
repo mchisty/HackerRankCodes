@@ -1,5 +1,5 @@
 
-package org.chisty.thread;
+package misc;
 
 public class ThreadJoinTest {
 

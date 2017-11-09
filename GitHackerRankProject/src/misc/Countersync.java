@@ -1,4 +1,4 @@
-package org.chisty.thread;
+package misc;
 
 /**
  * The Class CounterWithSynchronized.

@@ -5,6 +5,25 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * 
+ * Note:
+ * 
+ * - The unlock statement is always called in the finally block to ensure that
+ * the lock is released even if an exception is thrown in the method body(try
+ * block).
+ * 
+ * - The constructor for ReentrantLock accepts an optional fairness parameter
+ * (true or false). When set to true, locks favor granting access to the
+ * longest-waiting thread. Otherwise this lock does not guarantee any particular
+ * access order.
+ * 
+ * - It is recommended practice to always immediately follow a call to lock with
+ * a try block, most typically in a before/after construction.
+ * 
+ * @author isadmlc
+ *
+ */
 public class ReentrantLockWorker implements Runnable {
 
 	private String name;

@@ -1,3 +1,4 @@
+
 package misc.thread;
 
 import java.util.concurrent.ArrayBlockingQueue;
@@ -6,11 +7,12 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 
 public class ProducerConsumerApp1 {
+
 	public static void main(String[] args) {
 		ProducerConsumerApp1 app = new ProducerConsumerApp1();
-		// app.testWithLinkedBlockingQueue();
+		app.testWithLinkedBlockingQueue();
 		// app.testWithArrayBlockingQueue();
-		app.testWithSynchronousQueue();
+		// app.testWithSynchronousQueue();
 	}
 
 	private void testWithLinkedBlockingQueue() {

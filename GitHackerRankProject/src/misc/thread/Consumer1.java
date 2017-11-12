@@ -17,7 +17,8 @@ public class Consumer1 implements Runnable {
 			try {
 				Integer itemNumber = sharedQue.take();
 				System.out.println(" <--- Consume " + itemNumber);
-				if (itemNumber >= 9) { // Exit loop
+				// Exit loop when certain condition achieved
+				if (itemNumber >= ProducerConsumerApp1.NO_OF_ITEMS - 1) {
 					break;
 				}
 			} catch (InterruptedException e) {

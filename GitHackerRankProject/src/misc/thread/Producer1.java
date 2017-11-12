@@ -13,10 +13,10 @@ public class Producer1 implements Runnable {
 
 	@Override
 	public void run() {
-		for (int i = 0; i < 10; ++i) {
-			System.out.println("Produce " + i);
+		for (int i = 0; i < ProducerConsumerApp1.NO_OF_ITEMS; ++i) {
 			try {
 				sharedQue.put(i);
+				System.out.println("Produced item: " + i);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

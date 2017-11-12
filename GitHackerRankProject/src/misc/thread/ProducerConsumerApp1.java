@@ -5,9 +5,9 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 
-public class ProducerConsumerApp {
+public class ProducerConsumerApp1 {
 	public static void main(String[] args) {
-		ProducerConsumerApp app = new ProducerConsumerApp();
+		ProducerConsumerApp1 app = new ProducerConsumerApp1();
 		// app.testWithLinkedBlockingQueue();
 		// app.testWithArrayBlockingQueue();
 		app.testWithSynchronousQueue();
@@ -18,8 +18,8 @@ public class ProducerConsumerApp {
 		System.out.println("LinkedBlockingQueue test");
 		System.out.println("-------------------------------");
 		BlockingQueue<Integer> sharedQue = new LinkedBlockingQueue<>();
-		Thread prodThread = new Thread(new Producer(sharedQue));
-		Thread consThread = new Thread(new Consumer(sharedQue));
+		Thread prodThread = new Thread(new Producer1(sharedQue));
+		Thread consThread = new Thread(new Consumer1(sharedQue));
 		prodThread.start();
 		consThread.start();
 	}
@@ -29,8 +29,8 @@ public class ProducerConsumerApp {
 		System.out.println("ArrayBlockingQueue test");
 		System.out.println("-------------------------------");
 		BlockingQueue<Integer> sharedQue = new ArrayBlockingQueue<>(3);
-		Thread prodThread = new Thread(new Producer(sharedQue));
-		Thread consThread = new Thread(new Consumer(sharedQue));
+		Thread prodThread = new Thread(new Producer1(sharedQue));
+		Thread consThread = new Thread(new Consumer1(sharedQue));
 		prodThread.start();
 		consThread.start();
 	}
@@ -40,8 +40,8 @@ public class ProducerConsumerApp {
 		System.out.println("SynchronousQueue test");
 		System.out.println("-------------------------------");
 		BlockingQueue<Integer> sharedQue = new SynchronousQueue<>();
-		Thread prodThread = new Thread(new Producer(sharedQue));
-		Thread consThread = new Thread(new Consumer(sharedQue));
+		Thread prodThread = new Thread(new Producer1(sharedQue));
+		Thread consThread = new Thread(new Consumer1(sharedQue));
 		prodThread.start();
 		consThread.start();
 	}

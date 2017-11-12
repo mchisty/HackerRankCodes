@@ -2,10 +2,10 @@ package misc.thread;
 
 import java.util.concurrent.BlockingQueue;
 
-public class Consumer implements Runnable {
+public class Consumer1 implements Runnable {
 	private BlockingQueue<Integer> sharedQue = null;
 
-	public Consumer(BlockingQueue<Integer> sharedQue) {
+	public Consumer1(BlockingQueue<Integer> sharedQue) {
 		this.sharedQue = sharedQue;
 	}
 

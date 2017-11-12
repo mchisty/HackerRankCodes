@@ -5,10 +5,19 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * The Class RenentrantLockTest.
+ */
 public class RenentrantLockTest {
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 */
 	public static void main(String[] args) {
-		ReentrantLock re = new ReentrantLock(true);
+		ReentrantLock re = new ReentrantLock(false);
 		ExecutorService pool = Executors.newFixedThreadPool(2);
 		Runnable r1 = new ReentrantLockWorker("r1", re);
 		Runnable r2 = new ReentrantLockWorker("r2", re);

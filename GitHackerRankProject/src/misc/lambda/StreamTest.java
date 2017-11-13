@@ -15,8 +15,8 @@ import java.util.stream.IntStream;
 public class StreamTest {
 
 	/** The Constant strList. */
-	final static List<String> strList = Arrays.asList("John", "Supreme", "", "efg", "Brad", "", "", "abc", "Michael",
-			"XYZ", "Burton", "");
+	final public static List<String> strList = Arrays.asList("John", "Supreme", "", "efg", "Brad", "", "", "abc",
+			"Michael", "XYZ", "Burton", "");
 
 	/** The Constant numList. */
 	final static List<Integer> numList = Arrays.asList(50, 22, -10, 0, 98, 88, 15, -10, 99, 100, 205, 34);
@@ -39,6 +39,7 @@ public class StreamTest {
 		st.printWithParallelStream();
 		st.testStreamPrintArray();
 		st.testListToArray();
+		// --------------------------------------------
 		MyInterface m = st::printSomething;
 		m.doSomething("Instance method reference");
 	}

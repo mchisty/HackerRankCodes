@@ -1,3 +1,4 @@
+
 package org.hackerrank.nuix;
 
 /**
@@ -17,7 +18,8 @@ public class SolutionFoodFactory {
 		Food food2 = myFoods.getFood("Fruits");
 		System.out.println("My name is: " + food1.getClass().getSimpleName());
 		System.out.println("My name is: " + food2.getClass().getSimpleName());
-		System.out.println("Our superclass is: " + food1.getClass().getSuperclass().getSimpleName());
+		System.out.println("food1 superclass is: " + food1.getClass().getSuperclass().getSimpleName());
+		System.out.println("food2 superclass is: " + food2.getClass().getSuperclass().getSimpleName());
 		food1.serveFood();
 		food2.serveFood();
 	}
@@ -27,6 +29,7 @@ public class SolutionFoodFactory {
  * The Class Fastfood.
  */
 class Fastfood extends Food {
+
 	@Override
 	public void serveFood() {
 		System.out.println("I'm serving Fastfood");
@@ -37,6 +40,7 @@ class Fastfood extends Food {
  * The Class Fruits.
  */
 class Fruits extends Food {
+
 	@Override
 	public void serveFood() {
 		System.out.println("I'm serving Fruits");
@@ -47,6 +51,7 @@ class Fruits extends Food {
  * A factory for creating food objects.
  */
 class foodFactory { // extends SolutionFoodFactory {
+
 	public Food getFood(String string) {
 		if (string.equals("Fastfood")) {
 			return new Fastfood();
@@ -61,6 +66,7 @@ class foodFactory { // extends SolutionFoodFactory {
  * The Class Food.
  */
 class Food { // extends SolutionFoodFactory {
+
 	public void serveFood() {
 		// TODO
 	}

@@ -1,3 +1,4 @@
+
 package misc.lambda;
 
 import java.util.ArrayList;
@@ -12,12 +13,12 @@ public class LambdaTest {
 	public static void main(String[] args) {
 		System.out.println("==================== Runnable interface =====================");
 		Runnable r1 = new Runnable() {
+
 			@Override
 			public void run() {
 				System.out.println("Running without lambda");
 			}
 		};
-
 		Runnable r2 = () -> System.out.println("Running lambda");
 		r1.run();
 		r2.run();
@@ -33,42 +34,33 @@ public class LambdaTest {
 		personList.add(new Person("FGH 2", 39, "014-331232"));
 		personList.add(new Person("DEF 2", 41, "015-531231"));
 		personList.add(new Person("ABC 2", 42, "016-731230"));
-
 		System.out.println("------------------------------------------------------------- ");
 		System.out.println(" List without sort ");
 		System.out.println("------------------------------------------------------------- ");
-		personList.forEach(p -> p.printGivenName());
-
+		personList.forEach(p -> System.out.println(p.getGivenName()));
 		System.out.println("------------------------------------------------------------- ");
 		System.out.println(" List sorted ");
 		System.out.println("------------------------------------------------------------- ");
 		Collections.sort(personList, (Person p1, Person p2) -> p1.getGivenName().compareTo(p2.getGivenName()));
-		personList.forEach(p -> p.printGivenName());
-
+		personList.forEach(p -> System.out.println(p.getGivenName()));
 		System.out.println("------------------------------------------------------------- ");
 		System.out.println(" Age > 25 (consumer inside) ");
 		System.out.println("------------------------------------------------------------- ");
-
 		Predicate<Person> predicate1 = p -> p.getAge() > 25;
-		personList.stream().filter(predicate1).forEach(p -> p.printDetail());
-
+		personList.stream().filter(predicate1)
+				.forEach(p -> System.out.println(p.getGivenName() + ",\t " + p.getAge() + ",\t" + p.getPhone()));
 		System.out.println("------------------------------------------------------------- ");
 		System.out.println(" Age > 25 (consumer external) ");
 		System.out.println("------------------------------------------------------------- ");
-		Consumer<Person> c1 = p -> p.printDetail();
+		Consumer<Person> c1 = p -> System.out.println(p.getGivenName() + ",\t " + p.getAge() + ",\t" + p.getPhone());
 		personList.stream().filter(predicate1).forEach(c1);
-
 		System.out.println("------------------------------------------------------------- ");
 		System.out.println(" Age > 25 (with parallel stream, order changes) ");
 		System.out.println("------------------------------------------------------------- ");
 		personList.parallelStream().filter(predicate1).forEach(c1);
-
 		Integer[] a = { 1, 3, 2, 5 };
 		List<Integer> arrList = Arrays.asList(a);
 		System.out.println("listOfIntegers sorted in reverse order:");
-
 		arrList.stream().forEach(i -> System.out.print(i + " "));
-
 	}
-
 }

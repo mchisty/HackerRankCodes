@@ -1,3 +1,4 @@
+
 package org.hackerrank.hash;
 
 import java.util.Arrays;
@@ -5,9 +6,10 @@ import java.util.Arrays;
 public class MyHashMap<K, V> {
 
 	private int CAPACITY = 100;
-	private MyEntry<K, V> entries[] = new MyEntry[CAPACITY];
-	private int size = 0;
 
+	private MyEntry<K, V> entries[] = new MyEntry[CAPACITY];
+
+	private int size = 0;
 
 	private int getIndexPosition(K key) {
 		return key.hashCode() % CAPACITY;
@@ -17,38 +19,23 @@ public class MyHashMap<K, V> {
 		int index = getIndexPosition(key);
 		MyEntry<K, V> current = entries[index];
 		if (null == current) {
-			entries[index] = new MyEntry<K, V>(key, val);
+			entries[index] = new MyEntry<>(key, val);
 			++size;
 		} else {
 			MyEntry<K, V> tmp = null;
 			while (current != null) {
 				tmp = current;
-				if (key.equals(current.key)) { // Override/replace the existing
-												// value
+				if (key.equals(current.key)) {
 					current.value = val;
-					++size;
 					return;
 				} else {
 					current = current.nextEntry;
 				}
 			}
 			// The next entry is null
-			tmp.nextEntry = new MyEntry<K, V>(key, val);
+			tmp.nextEntry = new MyEntry<>(key, val);
 			++size;
 		}
-
-		// // ----------------------------------------------------
-		// // Calculate a position
-		//
-		// for (MyEntry<K, V> mh : entries) {
-		// if (mh.getKey().equals(key)) {
-		// mh.setValue(val);
-		// break;
-		// }
-		// }
-		// Now test capacity before insertion
-		// ensureCapacity();
-		// entries[++size] = new MyEntry<K, V>(key, val);
 	}
 
 	public V get(K key) {
@@ -119,7 +106,6 @@ public class MyHashMap<K, V> {
 		previousEntry = null;
 		--size;
 		return true;
-
 	}
 
 	// if CAPACITY exceeds, double its size and reassign entry array
@@ -134,7 +120,6 @@ public class MyHashMap<K, V> {
 		for (int i = pos; i < entries.length; ++i) {
 			entries[i] = entries[i + 1];
 		}
-
 	}
 
 	public int getSize() {
@@ -142,8 +127,11 @@ public class MyHashMap<K, V> {
 	}
 
 	private class MyEntry<K, V> {
+
 		private K key;
+
 		private V value;
+
 		private MyEntry<K, V> nextEntry;
 
 		MyEntry(K key, V value) {
@@ -198,5 +186,4 @@ public class MyHashMap<K, V> {
 			return true;
 		}
 	}
-	
 }

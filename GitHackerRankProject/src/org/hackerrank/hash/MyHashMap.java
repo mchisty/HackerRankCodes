@@ -64,36 +64,14 @@ public class MyHashMap<K, V> {
 
 	// ------------------------------------------------------------------
 	public boolean remove(K key) {
-		// int index = getIndexPosition(key);
-		// MyEntry<K, V> current = entries[index];
-		// if (null == current) {
-		// return false;
-		// } else {
-		// MyEntry<K, V> tmp = null;
-		// while (current != null) {
-		// if (key.equals(current.key)) {
-		// --size;
-		// if (tmp == null) {
-		// entries[index] = entries[index].nextEntry;
-		// return true;
-		// } else {
-		// tmp.nextEntry = current.nextEntry;
-		// return true;
-		// }
-		// }
-		// tmp = current;
-		// current = current.nextEntry;
-		//
-		// }
-		// }
 		int index = getIndexPosition(key);
 		MyEntry<K, V> current = entries[index];
-		MyEntry<K, V> previousEntry = null;
+		// MyEntry<K, V> previousEntry = null;
 		if (null == current) {
 			return false;
 		} else {
 			while (current != null) {
-				previousEntry = current;
+				// previousEntry = current;
 				if (key.equals(current.key)) {
 					current = null;
 					--size;
@@ -103,7 +81,7 @@ public class MyHashMap<K, V> {
 				}
 			}
 		}
-		previousEntry = null;
+		// previousEntry = null;
 		--size;
 		return true;
 	}
@@ -126,7 +104,7 @@ public class MyHashMap<K, V> {
 		return size;
 	}
 
-	private class MyEntry<K, V> {
+	class MyEntry<K, V> {
 
 		private K key;
 
@@ -185,5 +163,57 @@ public class MyHashMap<K, V> {
 			}
 			return true;
 		}
+
+		/**
+		 * @return the key
+		 */
+		public K getKey() {
+			return key;
+		}
+
+		/**
+		 * @param key
+		 *            the key to set
+		 */
+		public void setKey(K key) {
+			this.key = key;
+		}
+
+		/**
+		 * @return the value
+		 */
+		public V getValue() {
+			return value;
+		}
+
+		/**
+		 * @param value
+		 *            the value to set
+		 */
+		public void setValue(V value) {
+			this.value = value;
+		}
+
+		/**
+		 * @return the nextEntry
+		 */
+		public MyEntry<K, V> getNextEntry() {
+			return nextEntry;
+		}
+
+		/**
+		 * @param nextEntry
+		 *            the nextEntry to set
+		 */
+		public void setNextEntry(MyEntry<K, V> nextEntry) {
+			this.nextEntry = nextEntry;
+		}
+	}
+
+	/**
+	 * @return the entries
+	 */
+	public MyEntry<K, V>[] getEntries() {
+		return entries;
 	}
 }

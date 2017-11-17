@@ -3,18 +3,44 @@ package org.hackerrank.hash;
 
 import java.util.Arrays;
 
+/**
+ * The Class MyHashMap.
+ *
+ * @param <K>
+ *            the key type
+ * @param <V>
+ *            the value type
+ */
 public class MyHashMap<K, V> {
 
+	/** The capacity. */
 	private int CAPACITY = 100;
 
+	/** The entries. */
 	private MyEntry<K, V> entries[] = new MyEntry[CAPACITY];
 
+	/** The size. */
 	private int size = 0;
 
+	/**
+	 * Gets the index position.
+	 *
+	 * @param key
+	 *            the key
+	 * @return the index position
+	 */
 	private int getIndexPosition(K key) {
 		return key.hashCode() % CAPACITY;
 	}
 
+	/**
+	 * Put.
+	 *
+	 * @param key
+	 *            the key
+	 * @param val
+	 *            the val
+	 */
 	public void put(K key, V val) {
 		int index = getIndexPosition(key);
 		MyEntry<K, V> current = entries[index];
@@ -25,24 +51,38 @@ public class MyHashMap<K, V> {
 			MyEntry<K, V> tmp = null;
 			while (current != null) {
 				tmp = current;
-				if (key.equals(current.key)) {
-					current.value = val;
+				if (key.equals(current.getKey())) {
+					current.setValue(val);
 					return;
 				} else {
-					current = current.nextEntry;
+					current = current.getNextEntry();
 				}
 			}
 			// The next entry is null
-			tmp.nextEntry = new MyEntry<>(key, val);
+			tmp.setNextEntry(new MyEntry<>(key, val));
 			++size;
 		}
 	}
 
+	/**
+	 * Gets the.
+	 *
+	 * @param key
+	 *            the key
+	 * @return the v
+	 */
 	public V get(K key) {
 		MyEntry<K, V> entry = getEntry(key);
-		return entry.value;
+		return entry.getValue();
 	}
 
+	/**
+	 * Gets the entry.
+	 *
+	 * @param key
+	 *            the key
+	 * @return the entry
+	 */
 	private MyEntry<K, V> getEntry(K key) {
 		int index = getIndexPosition(key);
 		MyEntry<K, V> current = entries[index];
@@ -52,17 +92,23 @@ public class MyHashMap<K, V> {
 		} else {
 			while (current != null) {
 				previousEntry = current;
-				if (key.equals(current.key)) {
+				if (key.equals(current.getKey())) {
 					return current;
 				} else {
-					current = current.nextEntry;
+					current = current.getNextEntry();
 				}
 			}
 		}
 		return previousEntry;
 	}
 
-	// ------------------------------------------------------------------
+	/**
+	 * Removes the.
+	 *
+	 * @param key
+	 *            the key
+	 * @return true, if successful
+	 */
 	public boolean remove(K key) {
 		int index = getIndexPosition(key);
 		MyEntry<K, V> current = entries[index];
@@ -72,12 +118,12 @@ public class MyHashMap<K, V> {
 		} else {
 			while (current != null) {
 				// previousEntry = current;
-				if (key.equals(current.key)) {
+				if (key.equals(current.getKey())) {
 					current = null;
 					--size;
 					return true;
 				} else {
-					current = current.nextEntry;
+					current = current.getNextEntry();
 				}
 			}
 		}
@@ -86,6 +132,27 @@ public class MyHashMap<K, V> {
 		return true;
 	}
 
+	/**
+	 * Gets the size.
+	 *
+	 * @return the size
+	 */
+	public int getSize() {
+		return size;
+	}
+
+	/**
+	 * Gets the entries.
+	 *
+	 * @return the entries
+	 */
+	public MyEntry<K, V>[] getEntries() {
+		return entries;
+	}
+
+	/**
+	 * Ensure capacity.
+	 */
 	// if CAPACITY exceeds, double its size and reassign entry array
 	private void ensureCapacity() {
 		if (size == CAPACITY) {
@@ -94,126 +161,15 @@ public class MyHashMap<K, V> {
 		}
 	}
 
+	/**
+	 * Resize entries.
+	 *
+	 * @param pos
+	 *            the pos
+	 */
 	private void resizeEntries(int pos) {
 		for (int i = pos; i < entries.length; ++i) {
 			entries[i] = entries[i + 1];
 		}
-	}
-
-	public int getSize() {
-		return size;
-	}
-
-	class MyEntry<K, V> {
-
-		private K key;
-
-		private V value;
-
-		private MyEntry<K, V> nextEntry;
-
-		MyEntry(K key, V value) {
-			super();
-			this.key = key;
-			this.value = value;
-		}
-
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + ((key == null) ? 0 : key.hashCode());
-			result = prime * result + ((nextEntry == null) ? 0 : nextEntry.hashCode());
-			result = prime * result + ((value == null) ? 0 : value.hashCode());
-			return result;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj) {
-				return true;
-			}
-			if (obj == null) {
-				return false;
-			}
-			if (getClass() != obj.getClass()) {
-				return false;
-			}
-			MyEntry other = (MyEntry) obj;
-			if (key == null) {
-				if (other.key != null) {
-					return false;
-				}
-			} else if (!key.equals(other.key)) {
-				return false;
-			}
-			if (nextEntry == null) {
-				if (other.nextEntry != null) {
-					return false;
-				}
-			} else if (!nextEntry.equals(other.nextEntry)) {
-				return false;
-			}
-			if (value == null) {
-				if (other.value != null) {
-					return false;
-				}
-			} else if (!value.equals(other.value)) {
-				return false;
-			}
-			return true;
-		}
-
-		/**
-		 * @return the key
-		 */
-		public K getKey() {
-			return key;
-		}
-
-		/**
-		 * @param key
-		 *            the key to set
-		 */
-		public void setKey(K key) {
-			this.key = key;
-		}
-
-		/**
-		 * @return the value
-		 */
-		public V getValue() {
-			return value;
-		}
-
-		/**
-		 * @param value
-		 *            the value to set
-		 */
-		public void setValue(V value) {
-			this.value = value;
-		}
-
-		/**
-		 * @return the nextEntry
-		 */
-		public MyEntry<K, V> getNextEntry() {
-			return nextEntry;
-		}
-
-		/**
-		 * @param nextEntry
-		 *            the nextEntry to set
-		 */
-		public void setNextEntry(MyEntry<K, V> nextEntry) {
-			this.nextEntry = nextEntry;
-		}
-	}
-
-	/**
-	 * @return the entries
-	 */
-	public MyEntry<K, V>[] getEntries() {
-		return entries;
 	}
 }

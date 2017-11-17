@@ -1,11 +1,22 @@
 
 package misc;
 
+/**
+ * The Class ThreadJoinTest.
+ */
 public class ThreadJoinTest {
 
+	/**
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
+	 * @throws Exception
+	 *             the exception
+	 */
 	public static void main(String[] args) throws Exception {
 		ThreadJoinTest tj = new ThreadJoinTest();
-		// tj.joinTest();
+		tj.joinTest();
 		tj.priorityTest();
 	}
 
@@ -16,8 +27,12 @@ public class ThreadJoinTest {
 	 * 
 	 * In this example, after t1 completes its task then t2 and t3 starts
 	 * executing.
+	 *
+	 * @throws InterruptedException
+	 *             the interrupted exception
 	 */
 	void joinTest() throws InterruptedException {
+		System.out.println("===== Thread join test ====== ");
 		TestJoinMethod t1 = new TestJoinMethod("T1 thread");
 		TestJoinMethod t2 = new TestJoinMethod("T2 thread");
 		TestJoinMethod t3 = new TestJoinMethod("T3 thread");
@@ -40,6 +55,7 @@ public class ThreadJoinTest {
 	 * scheduling it chooses.
 	 */
 	void priorityTest() {
+		System.out.println("===== Thread priority test ====== ");
 		TestJoinMethod t1 = new TestJoinMethod("T1 thread");
 		TestJoinMethod t2 = new TestJoinMethod("T2 thread");
 		t1.setPriority(Thread.MIN_PRIORITY);
@@ -61,7 +77,7 @@ class TestJoinMethod extends Thread {
 	public void run() {
 		for (int i = 1; i <= 5; i++) {
 			try {
-				Thread.sleep(200);
+				Thread.sleep(50);
 			} catch (Exception e) {
 				System.out.println(e);
 			}

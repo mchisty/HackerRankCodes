@@ -4,7 +4,6 @@ package misc;
 public class Test1 {
 
 	public static void main(String[] args) {
-		Long l = (long) 2.245;
 		Test1 t1 = new Test1();
 		double lat1 = 43.7415985072208;
 		double lon1 = -79.7179065174291;
@@ -18,7 +17,6 @@ public class Test1 {
 		// Radius of the earth in km
 		final int R = 6371;
 		double dLat = deg2rad(lat2 - lat1);
-		// deg2rad below
 		double dLon = deg2rad(lon2 - lon1);
 		double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
 				+ Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);

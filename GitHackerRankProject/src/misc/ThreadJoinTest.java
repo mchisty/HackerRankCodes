@@ -81,7 +81,7 @@ class TestJoinMethod extends Thread {
 			} catch (Exception e) {
 				System.out.println(e);
 			}
-			System.out.println(msg + ":\t" + i);
+			System.out.println(msg + ":\t" + i + " => Priority level: " + getPriority());
 		}
 	}
 }

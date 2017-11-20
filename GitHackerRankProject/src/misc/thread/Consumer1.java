@@ -16,7 +16,7 @@ public class Consumer1 implements Runnable {
 		while (true) {
 			try {
 				Integer itemNumber = sharedQue.take();
-				System.out.println(" <--- Consume " + itemNumber);
+				System.out.println(" <--- Consume: " + itemNumber);
 				// Exit loop when certain condition achieved
 				if (itemNumber >= ProducerConsumerApp1.NO_OF_ITEMS - 1) {
 					break;

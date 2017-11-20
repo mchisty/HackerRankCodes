@@ -18,7 +18,8 @@ public class BadThreads {
 
 		@Override
 		public void run() {
-			count.incrementAndGet();
+			count.incrementAndGet(); // Should increment to 1
+			count.incrementAndGet(); // Should increment to 2
 			message = "Eat oats";
 		}
 	}
@@ -46,7 +47,7 @@ public class BadThreads {
 		// ------------------------------------------------------------------
 		// Try with uncommenting this. This will show the expected result
 		// ------------------------------------------------------------------
-		// ct.join(); // Without this line, prints null
+		ct.join(); // Without this line, prints null (or zero)
 		System.out.println(count.get());
 		System.out.println(message);
 	}

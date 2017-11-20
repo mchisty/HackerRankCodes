@@ -15,7 +15,7 @@ import java.util.stream.IntStream;
 public class StreamTest {
 
 	/** The Constant strList. */
-	final public static List<String> strList = Arrays.asList("John", "Supreme", "", "efg", "Brad", "", "", "abc",
+	final public static List<String> strList = Arrays.asList("John", "Supreme", "", "efg", "Brad", "", "Benkley", "abc",
 			"Michael", "XYZ", "Burton", "");
 
 	/** The Constant numList. */

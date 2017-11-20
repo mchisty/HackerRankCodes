@@ -1,3 +1,4 @@
+
 package misc;
 
 import java.util.concurrent.Callable;
@@ -23,8 +24,8 @@ public class ExecutableServiceTest {
 	 */
 	public static void main(String[] args) {
 		ExecutableServiceTest et = new ExecutableServiceTest();
-		et.executorTest1();
-		et.executorTest2();
+		// et.executorTest1();
+		// et.executorTest2();
 		et.executorTest3();
 	}
 
@@ -41,7 +42,7 @@ public class ExecutableServiceTest {
 
 	/**
 	 * Callable interfaces are just like Runnable interfaces but instead of
-	 * being void they return a value. Callables can be submitted to executor
+	 * being void, they return a value. Callables can be submitted to executor
 	 * services just like Runnables interfaces. But what about the Callable's
 	 * result? Since submit() doesn't wait until the task completes, the
 	 * executor service cannot return the result of the Callable directly.
@@ -81,15 +82,14 @@ public class ExecutableServiceTest {
 			Callable<String> c = () -> {
 				// Try by commenting this line. No TimeoutException will be
 				// shown
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 				return "Hello Callable";
 			};
 			Future<String> future = executor.submit(c);
-			future.get(1, TimeUnit.SECONDS);
+			future.get(2, TimeUnit.SECONDS);
 			executor.shutdown();
 		} catch (TimeoutException | InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 		}
 	}
-
 }

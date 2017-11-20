@@ -28,6 +28,9 @@ public class ProducerConsumerApp1 {
 		consThread.start();
 	}
 
+	/**
+	 * 
+	 */
 	private void testWithArrayBlockingQueue() {
 		System.out.println("-------------------------------");
 		System.out.println("ArrayBlockingQueue test");

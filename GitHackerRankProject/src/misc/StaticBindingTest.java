@@ -7,9 +7,11 @@ import java.util.HashSet;
 public class StaticBindingTest {
 
 	public static void main(String[] args) {
-		StaticBindingTest st = new StaticBindingTest();
 		Collection c = new HashSet();
+		StaticBindingTest st = new StaticBindingTest();
 		st.sort(c);
+		HashSet c1 = new HashSet();
+		st.sort(c1);
 	}
 
 	public Collection sort(Collection c) {

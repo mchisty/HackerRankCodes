@@ -42,8 +42,9 @@ public class RaceConditionTest {
 		// -------------------------------------------------
 		// Test one at a time by commenting/uncommenting
 		// -------------------------------------------------
-		rc.unsafeRWUApproach();
+		// rc.unsafeRWUApproach();
 		// rc.safeRWUApproach();
+		rc.safeWithCounDownLatch();
 	}
 
 	/**
@@ -52,7 +53,7 @@ public class RaceConditionTest {
 	private void unsafeRWUApproach() {
 		System.out.println("###### Unsafe approach ######## ");
 		Runnable waiter = () -> {
-			System.out.println("Step1: Wait progress bar ...");
+			System.out.println("Step1: Wait progress bar counter ...");
 			System.out.println("\nStep 3: Wait finished. Unsafe approach completed.");
 		};
 		Runnable decrementar = () -> {
@@ -100,5 +101,30 @@ public class RaceConditionTest {
 		};
 		new Thread(waiter).start();
 		new Thread(decrementar).start();
+	}
+
+	private void safeWithCounDownLatch() {
+		CountDownLatch cl = new CountDownLatch(count);
+		Runnable waiter = () -> {
+			try {
+				System.out.print("Waiting for counter to finish ... \n");
+				cl.await();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		};
+		Runnable counter = () -> {
+			for (int i = 0; i < count; ++i) {
+				try {
+					cl.countDown();
+					System.out.print(i + "..");
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		new Thread(waiter).start();
+		new Thread(counter).start();
 	}
 }

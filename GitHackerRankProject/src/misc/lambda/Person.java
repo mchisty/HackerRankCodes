@@ -16,6 +16,14 @@ public class Person {
 	/** The phone. */
 	private String phone;
 
+	private String email;
+
+	public Person(String givenName, String email) {
+		super();
+		this.givenName = givenName;
+		this.email = email;
+	}
+
 	/**
 	 * Instantiates a new person.
 	 *
@@ -140,5 +148,20 @@ public class Person {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email
+	 *            the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

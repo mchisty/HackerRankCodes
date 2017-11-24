@@ -1,3 +1,4 @@
+
 package misc;
 
 /**
@@ -22,30 +23,48 @@ package misc;
 public class Novisibility {
 
 	private static boolean ready = false;
+
 	private static int number = 0;
 
-	private static class ReaderThread extends Thread {
-		@Override
-		public void run() {
+	// private static class ReaderThread extends Thread {
+	// @Override
+	// public void run() {
+	// System.out.println("In reader");
+	// while (!ready) {
+	// Thread.yield();
+	// }
+	// System.out.println(number);
+	// }
+	// }
+	//
+	// public static void main(String[] args) {
+	// ReaderThread rt = new ReaderThread();
+	// rt.start();
+	// try {
+	// Thread.sleep(100);
+	// } catch (InterruptedException e) {
+	// e.printStackTrace();
+	// }
+	// number = 42;
+	// ready = true;
+	// // System.out.println("ready val: " + ready);
+	// }
+	public static void main(String[] args) {
+		Runnable r = () -> {
 			System.out.println("In reader");
 			while (!ready) {
 				Thread.yield();
 			}
 			System.out.println(number);
-		}
-	}
-
-	public static void main(String[] args) {
-		ReaderThread rt = new ReaderThread();
+		};
+		Thread rt = new Thread(r);
 		rt.start();
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		// try {
+		// Thread.sleep(10);
+		// } catch (InterruptedException e) {
+		// e.printStackTrace();
+		// }
 		number = 42;
 		ready = true;
-		// System.out.println("ready val: " + ready);
 	}
-
 }

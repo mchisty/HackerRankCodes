@@ -17,7 +17,7 @@ public class RenentrantLockTest {
 	 *            the arguments
 	 */
 	public static void main(String[] args) {
-		ReentrantLock re = new ReentrantLock(false);
+		ReentrantLock re = new ReentrantLock(true);
 		ExecutorService pool = Executors.newFixedThreadPool(2);
 		Runnable r1 = new ReentrantLockWorker("r1", re);
 		Runnable r2 = new ReentrantLockWorker("r2", re);

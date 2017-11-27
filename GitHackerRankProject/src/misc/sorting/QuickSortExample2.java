@@ -45,30 +45,26 @@ public class QuickSortExample2 {
 		int pivotPos = (low + high) / 2;
 		int pivot = a[pivotPos];
 		while (leftPos < rightPos) {
+			// Ideal scenario, do nothing
 			while (a[leftPos] < pivot) {
 				leftPos++;
 			}
+			// Ideal scenario, do nothing
 			while (a[rightPos] > pivot) {
 				rightPos--;
 			}
+			// Not ideal: so swap left and right position values
+			// (just make sure that left position <= right position)
 			if (leftPos <= rightPos) {
-				// System.out.println("leftPos:" + leftPos + " a[leftPos]: " +
-				// a[leftPos] + " <=======> rightPos:"
-				// + rightPos + " a[rightPos]: " + a[rightPos] + ". high: " +
-				// high + ", low: " + low);
 				swap(leftPos, rightPos);
 				leftPos++;
 				rightPos--;
 			}
 		}
 		if (leftPos < high) {
-			// System.out.println("\t---> left pos: " + leftPos + "; high: " +
-			// high);
 			quickSort(leftPos, high);
 		}
 		if (rightPos > low) {
-			// System.out.println("\t---> right pos: " + rightPos + "; low: " +
-			// low);
 			quickSort(low, rightPos);
 		}
 	}

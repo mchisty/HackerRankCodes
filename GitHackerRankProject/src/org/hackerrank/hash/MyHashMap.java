@@ -34,37 +34,6 @@ public class MyHashMap<K, V> {
 	}
 
 	/**
-	 * Put.
-	 *
-	 * @param key
-	 *            the key
-	 * @param val
-	 *            the val
-	 */
-	public void put(K key, V val) {
-		int index = getIndexPosition(key);
-		MyEntry<K, V> current = entries[index];
-		if (null == current) {
-			entries[index] = new MyEntry<>(key, val);
-			++size;
-		} else {
-			MyEntry<K, V> tmp = null;
-			while (current != null) {
-				tmp = current;
-				if (key.equals(current.getKey())) {
-					current.setValue(val);
-					return;
-				} else {
-					current = current.getNextEntry();
-				}
-			}
-			// The next entry is null
-			tmp.setNextEntry(new MyEntry<>(key, val));
-			++size;
-		}
-	}
-
-	/**
 	 * Gets the.
 	 *
 	 * @param key
@@ -142,12 +111,78 @@ public class MyHashMap<K, V> {
 	}
 
 	/**
+	 * Put.
+	 *
+	 * @param key
+	 *            the key
+	 * @param val
+	 *            the val
+	 */
+	public void put(K key, V val) {
+		int index = getIndexPosition(key);
+		MyEntry<K, V> existingEntry = entries[index];
+		if (null == existingEntry) {
+			entries[index] = new MyEntry<>(key, val);
+			++size;
+		} else {
+			MyEntry<K, V> tmp = null;
+			while (existingEntry != null) {
+				tmp = existingEntry;
+				if (key.equals(existingEntry.getKey())) {
+					existingEntry.setValue(val);
+					return;
+				} else {
+					existingEntry = existingEntry.getNextEntry();
+				}
+			}
+			// The next entry is null
+			tmp.setNextEntry(new MyEntry<>(key, val));
+			++size;
+		}
+	}
+
+	/**
+	 * Put 1.
+	 *
+	 * @param key
+	 *            the key
+	 * @param val
+	 *            the val
+	 */
+	public void put1(K key, V val) {
+		int index = getIndexPosition(key);
+		MyEntry<K, V> existingElement = entries[index];
+		MyEntry<K, V> tmp = entries[index];
+		while (existingElement != null) {
+			if (existingElement.getKey().equals(key)) {
+				existingElement.setValue(val);
+				return;
+			}
+			existingElement = existingElement.getNextEntry();
+		}
+		MyEntry<K, V> newEntry = new MyEntry<>(key, val);
+		newEntry.setNextEntry(tmp);
+		entries[index] = newEntry;
+		++size;
+	}
+
+	/**
 	 * Gets the entries.
 	 *
 	 * @return the entries
 	 */
 	public MyEntry<K, V>[] getEntries() {
-		return entries;
+		MyEntry<K, V> updatedEntries[] = new MyEntry[size];
+		int i = 0;
+		for (MyEntry<K, V> me : entries) {
+			do {
+				if (me != null) {
+					updatedEntries[i++] = me;
+					me = me.getNextEntry();
+				}
+			} while (me != null);
+		}
+		return updatedEntries;
 	}
 
 	/**

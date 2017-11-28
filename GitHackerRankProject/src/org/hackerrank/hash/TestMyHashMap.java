@@ -31,7 +31,16 @@ public class TestMyHashMap {
 		map.put1(400, "Val_400");
 		map.put1(500, "Val_500");
 		for (MyEntry<Integer, String> mentry : map.getEntries()) {
-			System.out.println("Key: " + mentry.getKey() + ", Value: " + mentry.getValue());
+			System.out.println("key: " + mentry.getKey() + ", value: " + mentry.getValue());
 		}
+		System.out.println("size: " + map.getSize());
+		int key = 300;
+		System.out.println("Removing: " + key + "=" + map.get(key));
+		map.remove(key);
+		System.out.println("After removal, size: " + map.getSize());
+		key = 400;
+		System.out.println("Removing: " + key + "=" + map.get(key));
+		map.remove(key);
+		System.out.println("After removal, size: " + map.getSize());
 	}
 }

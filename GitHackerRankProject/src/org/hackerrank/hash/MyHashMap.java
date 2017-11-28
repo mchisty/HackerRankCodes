@@ -151,17 +151,19 @@ public class MyHashMap<K, V> {
 	 */
 	public void put1(K key, V val) {
 		int index = getIndexPosition(key);
-		MyEntry<K, V> existingElement = entries[index];
 		MyEntry<K, V> tmp = entries[index];
-		while (existingElement != null) {
-			if (existingElement.getKey().equals(key)) {
-				existingElement.setValue(val);
+		MyEntry<K, V> firstElementInIndexChain = entries[index];
+		while (tmp != null) {
+			if (tmp.getKey().equals(key)) {
+				tmp.setValue(val);
 				return;
 			}
-			existingElement = existingElement.getNextEntry();
+			tmp = tmp.getNextEntry();
 		}
 		MyEntry<K, V> newEntry = new MyEntry<>(key, val);
-		newEntry.setNextEntry(tmp);
+		// New Entry added to the first in chain; rest of the items shifted down one
+		// position
+		newEntry.setNextEntry(firstElementInIndexChain);
 		entries[index] = newEntry;
 		++size;
 	}

@@ -3,7 +3,6 @@ package misc.sorting;
 
 import java.util.stream.IntStream;
 
-// TODO: Auto-generated Javadoc
 /**
  * This approach takes middle element as pivot. The best case is O(n*log n) when middle element is chosen as pivot
  * 

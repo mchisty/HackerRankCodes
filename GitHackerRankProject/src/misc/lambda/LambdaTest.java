@@ -35,6 +35,15 @@ public class LambdaTest {
 		personList.add(new Person("DEF 2", 41, "015-531231"));
 		personList.add(new Person("ABC 2", 42, "016-731230"));
 		System.out.println("------------------------------------------------------------- ");
+		System.out.println(" List with name starting with A");
+		System.out.println("------------------------------------------------------------- ");
+		Predicate<Person> predicateNameStartsWith = p -> p.getGivenName().startsWith("A");
+		personList.stream().filter(predicateNameStartsWith)
+				.forEach(p -> System.out.println(p.getGivenName() + ",\t " + p.getAge() + ",\t" + p.getPhone()));
+
+		personList.forEach(p -> System.out.println(p.getGivenName().startsWith("A")));
+
+		System.out.println("------------------------------------------------------------- ");
 		System.out.println(" List without sort ");
 		System.out.println("------------------------------------------------------------- ");
 		personList.forEach(p -> System.out.println(p.getGivenName()));

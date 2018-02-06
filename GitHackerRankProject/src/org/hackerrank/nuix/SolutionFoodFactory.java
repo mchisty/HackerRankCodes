@@ -16,6 +16,7 @@ public class SolutionFoodFactory {
 		foodFactory myFoods = new foodFactory();
 		Food food1 = myFoods.getFood("Fastfood");
 		Food food2 = myFoods.getFood("Fruits");
+		System.out.println("My name is: " + food1.getClass().getName());
 		System.out.println("My name is: " + food1.getClass().getSimpleName());
 		System.out.println("My name is: " + food2.getClass().getSimpleName());
 		System.out.println("food1 superclass is: " + food1.getClass().getSuperclass().getSimpleName());

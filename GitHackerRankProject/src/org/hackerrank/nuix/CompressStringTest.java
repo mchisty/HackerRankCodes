@@ -1,9 +1,8 @@
-package misc.crackingcode;
+package org.hackerrank.nuix;
 
 /**
- * Implement a method to perform basic string compression using the counts of
- * repeated characters. For example, the string aabcccccaaa would become
- * a2bc5a3.
+ * Implement a method to perform basic string compression using the counts of repeated characters. For example, the
+ * string aabcccccaaa would become a2bc5a3.
  * 
  */
 public class CompressStringTest {
@@ -14,7 +13,7 @@ public class CompressStringTest {
 	 *            the arguments
 	 */
 	public static void main(String[] args) {
-		String sarr[] = { "a", "abc", "aabcccccaaa", "aabaaa" };
+		String sarr[] = { "a", "abc", "aabcccccaaa", "aabaaa", "abaabbbc" };
 		for (String s : sarr) {
 			System.out.println(s + ": " + getCompressedString(s));
 		}
@@ -23,15 +22,15 @@ public class CompressStringTest {
 	/**
 	 * Gets the compressed string.
 	 *
-	 * @param s
+	 * @param message
 	 *            the s
 	 * @return the compressed string
 	 */
-	private static String getCompressedString(String s) {
+	private static String getCompressedString(String message) {
 		int count = 1;
 		StringBuilder sb = new StringBuilder();
-		char first = s.charAt(0);
-		char c[] = s.toCharArray();
+		char first = message.charAt(0);
+		char c[] = message.toCharArray();
 		for (int i = 1; i < c.length; ++i) {
 			if (c[i] == first) {
 				++count;

@@ -1,12 +1,12 @@
-package org.hackerrank;
+package org.hackerrank.nuix;
 
-public final class Test4 {
+public final class Test3 {
 	class Inner {
 		Class c;
 		Object o;
 
 		void test() {
-			if (Test4.this.flag)
+			if (Test3.this.flag)
 				;
 			{
 				sample();
@@ -20,11 +20,11 @@ public final class Test4 {
 		System.out.println("Sample");
 	}
 
-	public Test4() {
+	public Test3() {
 		(new Inner()).test();
 	}
 
 	public static void main(String args[]) {
-		new Test4();
+		new Test3();
 	}
 }

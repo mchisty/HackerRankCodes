@@ -20,14 +20,14 @@ public class SubStringDistinctTest {
 
 		for (int i = 0; i < inputStr.length() - num + 1; ++i) {
 			String tmp = inputStr.substring(i, i + num);
-			if (isDistinct(tmp)) {
+			if (isContainUniqueChar(tmp)) {
 				subs.add(tmp);
 			}
 		}
 		return new ArrayList<>(subs);
 	}
 
-	private static boolean isDistinct(String input) {
+	private static boolean isContainUniqueChar(String input) {
 		Set<Character> set = new HashSet<>();
 		char[] characters = input.toCharArray();
 

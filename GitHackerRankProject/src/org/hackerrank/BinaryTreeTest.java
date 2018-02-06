@@ -30,6 +30,7 @@ public class BinaryTreeTest {
 		for (int i = 0; i < T; ++i) {
 			root = insert(root, a[i]);
 		}
+		System.out.println("root: " + root.data);
 		printInOrder(root);
 
 		int value = 35; // 14 25 31 39 21 28 36 47 24 41 32

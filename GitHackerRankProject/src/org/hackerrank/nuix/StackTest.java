@@ -1,12 +1,12 @@
-package org.hackerrank;
+package org.hackerrank.nuix;
+
+import java.util.Stack;
 
 public class StackTest {
 	/**
-	 * The solution is pretty straight forward. Define [, {, ( as opening type
-	 * brackets and ), }, ] as closing type brackets. Whenever an opening type
-	 * bracket appears, we just push it onto the stack. Whenever a closing type
-	 * bracket appears, we check if the top of the stack contains the opening
-	 * type of the same bracket or not
+	 * The solution is pretty straight forward. Define [, {, ( as opening type brackets and ), }, ] as closing type
+	 * brackets. Whenever an opening type bracket appears, we just push it onto the stack. Whenever a closing type
+	 * bracket appears, we check if the top of the stack contains the opening type of the same bracket or not
 	 *
 	 */
 	public static void main(String[] args) {
@@ -14,6 +14,8 @@ public class StackTest {
 		// System.out.println(isBalanced(s));
 		String values[] = { "{}[]()", "{[}]}}" };
 		String[] result = braces(values);
+		String[] result2 = bracesWithStack(values);
+
 		for (String s : result) {
 			System.out.println(s);
 		}
@@ -57,6 +59,54 @@ public class StackTest {
 					return false;
 				}
 			} else if (s.charAt(i) == ']') {
+				if (stack.isEmpty()) {
+					return false;
+				}
+				if (stack.pop() != '[') {
+					return false;
+				}
+			}
+		}
+		return stack.isEmpty();
+	}
+
+	// ----------------------------------------------------------
+
+	static String[] bracesWithStack(String[] values) {
+		String[] result = new String[values.length];
+		for (int i = 0; i < values.length; ++i) {
+			result[i] = isBalancedWithJavaStack(values[i]) ? "YES" : "NO";
+		}
+		return result;
+	}
+
+	public static boolean isBalancedWithJavaStack(String text) {
+		Stack<Character> stack = new Stack<>();
+		for (int i = 0; i < text.length(); i++) {
+			// Push
+			if (text.charAt(i) == '[') {
+				stack.push('[');
+			} else if (text.charAt(i) == '{') {
+				stack.push('{');
+			} else if (text.charAt(i) == '(') {
+				stack.push('(');
+			}
+			// Pop
+			else if (text.charAt(i) == ')') {
+				if (stack.isEmpty()) {
+					return false;
+				}
+				if (stack.pop() != '(') {
+					return false;
+				}
+			} else if (text.charAt(i) == '}') {
+				if (stack.isEmpty()) {
+					return false;
+				}
+				if (stack.pop() != '{') {
+					return false;
+				}
+			} else if (text.charAt(i) == ']') {
 				if (stack.isEmpty()) {
 					return false;
 				}

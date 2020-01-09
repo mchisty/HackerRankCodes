@@ -42,9 +42,9 @@ public class RaceConditionTest {
 		// -------------------------------------------------
 		// Test one at a time by commenting/uncommenting
 		// -------------------------------------------------
-		// rc.unsafeRWUApproach();
-		// rc.safeRWUApproach();
-		rc.safeWithCounDownLatch();
+//		 rc.unsafeRWUApproach();
+		 rc.safeRWUApproach();
+//		rc.safeWithCounDownLatch();
 	}
 
 	/**
@@ -82,7 +82,6 @@ public class RaceConditionTest {
 			try {
 				System.out.println("Step1: Wait progress bar ...");
 				ct.await();
-				// After printing, it waits at this point
 				System.out.println("\nStep 3: Wait finished. Safe approach completed.");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -92,8 +91,8 @@ public class RaceConditionTest {
 			for (int i = 0; i < count; ++i) {
 				ct.countDown(); // Count down and releases shared mode
 				try {
-					System.out.print(i + "..");
-					Thread.sleep(100);
+					System.out.print(ct.getCount() + "..");
+					Thread.sleep(200);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

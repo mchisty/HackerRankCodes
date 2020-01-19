@@ -13,15 +13,33 @@ The objective is to develop an application that should provide an abstraction be
 
 
 
+/** ------------ **/
+/** LIMITATIONS: **/
+/** ------------ **/
+
+The load balancer will work with as many email servers as required (not just two). However, this is only a test exercise, therefore the followings limitations need to be considered:
+
+1. A Map object is created with email server api as key, and authentication as value. Although this is not an standard way, but this was done for the sake of simplicity to demonstrate that this works. 
+a. Ideally any credential should not be put into Map or in a hard-coded way
+b. A Map object could be used for different purpose e.g. server name (key), weight (value)
+c. An ideal way would be to put credentials/authentication in a server configuration file 
+
+(Ref. EmailServerPool.java)
+
+2. Since this is not a professional requirement, the followings are NOT provided:
+a. No JUnit test was written
+b. No separate Exception handling class was written to handle exception
+c. No separate Logger handling class was written to handle logs
+
+
+
+
 /** ---------------------- **/
 /** Technical explanation: **/
 /** ---------------------- **/
+To develop this scenario, a simple load balancer of email servers have been developed. The load balancer will work with as many email servers as required (not just two).
 
-To develop this scenario, a simple simple load balancer of email servers have been developed. The load balancer will work with as many email servers as required (not just two). However, since this is only test exercise and NOT an actual production code, the followings limitations are need to be considered:
-
-1. A Map object is created with email server api as key, and authentication as value. Although this is not an standard way, but this was done for the sake of simplicity to demonstrate that this works. A better way could be put such authentication information in some server configuration file. (Ref. EmailServerPool.java)
-
-2. The basic idea is to execute a curl command which is generally as follows (example from sendgrid.com):
+1. The basic idea is to execute a curl command which is generally as follows (example from sendgrid.com):
 
 curl --request POST \
   --url https://api.sendgrid.com/v3/mail/send \
@@ -33,15 +51,15 @@ There can be slight differences among APIs of several email service providers. H
 
 For the sake of this simple exercise, all the email servers in pool are fake EXCEPT one: https://api.sendgrid.com/v3/mail/send. This is just to ENSURE that if one of the service fails, it continues to move on with the next available service and goes on like this until it reaches to the last item in the pool. (A brutal force approach is applied to fail some scenarios intentionally)
 
-3. A load balancer service is implemented which will fetch email servers from Pool on a round robin basis. (Ref. EmailServerLoadBalancerServiceImpl.java)
+2. A load balancer service is implemented which will fetch email servers from Pool on a round robin basis. (Ref. EmailServerLoadBalancerServiceImpl.java)
 
-4. The main thread will use load balancer to pick a email service for API execution. If an API execution succeeds, the main thread just exits; otherwise it continues with the next server from the pool, provided by the load balancer. (Ref. EmailLoadBalancerManageApplication.java)
+3. The main thread will use load balancer to pick a email service for API execution. If an API execution succeeds, the main thread just exits; otherwise it continues with the next server from the pool, provided by the load balancer. (Ref. EmailLoadBalancerManageApplication.java)
 
-5. Enum are used to hold constant variable like email properties, response code etc. (Ref. EmailPropEnum.java, HttpResponseEnum.java)
+4. Enum are used to hold constant variable like email properties, response code etc. (Ref. EmailPropEnum.java, HttpResponseEnum.java)
 
-6. The email properties are used in a property configuration file called "email.properties"
+5. The email properties are used in a property configuration file called "email.properties"
 
-7. Plain/Core java is used for this exercise; no framework solution like Spring/SpringBoot, no third party API like APache tools or any other SDK tools provided by email service providers are used.
+6. Plain/Core java is used for this exercise; no framework solution like Spring/SpringBoot, no third party API like APache tools or any other SDK tools provided by email service providers are used.
 
 
 
@@ -72,4 +90,4 @@ INFO:
 /*==============================================================================================================================*/
 
 
-Once the application is executed successfully, please check all the emails mentioned in the "to" attributes.
+5. Once the application is executed successfully, please check all the emails mentioned in the "to" attributes to verify that the emails have gone through. This might take a few minutes for the emails to arrive at inbox.

@@ -39,7 +39,7 @@ c. No separate Logger handling class was written to handle logs
 /** ---------------------- **/
 To develop this scenario, a simple load balancer of email servers have been developed. The load balancer will work with as many email servers as required (not just two).
 
-1. The basic idea is to execute a curl command which is generally as follows (example from sendgrid.com):
+1. The basic idea is to execute a REST api with necessary attributes. A curl command to execute such RESTful api is generally as follows (example from sendgrid.com):
 
 curl --request POST \
   --url https://api.sendgrid.com/v3/mail/send \

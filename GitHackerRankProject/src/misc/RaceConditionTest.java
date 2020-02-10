@@ -42,13 +42,13 @@ public class RaceConditionTest {
 		// -------------------------------------------------
 		// Test one at a time by commenting/uncommenting
 		// -------------------------------------------------
-//		 rc.unsafeRWUApproach();
-		 rc.safeRWUApproach();
+//		rc.unsafeRWUApproach(); // Without CountDownLatch#await() method
+		rc.safeRWUApproach();
 //		rc.safeWithCounDownLatch();
 	}
 
 	/**
-	 * Unsafe rwu approach.
+	 * Unsafe rwu approach i.e. without using CountDownLatch#await() method
 	 */
 	private void unsafeRWUApproach() {
 		System.out.println("###### Unsafe approach ######## ");
@@ -71,7 +71,9 @@ public class RaceConditionTest {
 	}
 
 	/**
-	 * Safe rwu approach.
+	 * Safe rwu approach. <br/>
+	 * - using CountDownLatch#await() method <br/>
+	 * - display CountDownLatch#getCount() value
 	 * 
 	 * @throws InterruptedException
 	 */
@@ -91,6 +93,7 @@ public class RaceConditionTest {
 			for (int i = 0; i < count; ++i) {
 				ct.countDown(); // Count down and releases shared mode
 				try {
+					ct.countDown(); // Count down and releases shared mode
 					System.out.print(ct.getCount() + "..");
 					Thread.sleep(200);
 				} catch (InterruptedException e) {
@@ -102,28 +105,35 @@ public class RaceConditionTest {
 		new Thread(decrementar).start();
 	}
 
+
+	/**
+	 * - using CountDownLatch#await() method <br/>
+	 * - display i index value
+	 */
 	private void safeWithCounDownLatch() {
 		CountDownLatch cl = new CountDownLatch(count);
 		Runnable waiter = () -> {
 			try {
-				System.out.print("Waiting for counter to finish ... \n");
+				System.out.println("Step1: Wait progress bar ...");
 				cl.await();
+				System.out.println("\nStep 3: Wait finished. Safe approach completed.");
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		};
-		Runnable counter = () -> {
+		Runnable decrementar = () -> {
 			for (int i = 0; i < count; ++i) {
+				cl.countDown();
 				try {
-					cl.countDown();
 					System.out.print(i + "..");
-					Thread.sleep(100);
+					Thread.sleep(200);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
 		};
 		new Thread(waiter).start();
-		new Thread(counter).start();
+		new Thread(decrementar).start();
 	}
 }

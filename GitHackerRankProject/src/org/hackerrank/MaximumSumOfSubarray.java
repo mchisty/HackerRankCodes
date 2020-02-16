@@ -52,9 +52,11 @@ import java.util.Arrays;
 public class MaximumSumOfSubarray {
 	public static void main(String[] args) {
 
-		int arr[] = { -1, 10, -10, 1 }; // { -1, -2, -3, -4, -5, -6 }; //
+//		int arr[] = { -1, 10, -10, 1 }; // { -1, -2, -3, -4, -5, -6 }; //
+		int[] arr = { 3, 3, 9, 9, 5 };
+		System.out.println(getMaxSum(arr));
 		// System.out.println(getMaxContiguous(a));
-		System.out.println(getMaxNonContiguous(arr));
+//		System.out.println(getMaxNonContiguous(arr));
 
 		// Scanner in = new Scanner(System.in);
 		// int t = in.nextInt();
@@ -72,6 +74,18 @@ public class MaximumSumOfSubarray {
 		// }
 		// in.close();
 
+	}
+
+
+
+	static int getMaxSum(int x[]) {
+		int p = 0, s = 0;
+		for (int k = 0; k < x.length; k++) {
+			s = Math.max(x[k], s + x[k]);
+			System.out.println("-> val: " + s);
+			p = Math.max(p, s);
+		}
+		return p;
 	}
 
 	static int getMaxContiguous(int a[]) {

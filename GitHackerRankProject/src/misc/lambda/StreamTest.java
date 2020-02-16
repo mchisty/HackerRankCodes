@@ -25,8 +25,7 @@ public class StreamTest {
 	/**
 	 * The main method.
 	 *
-	 * @param args
-	 *            the arguments
+	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 		System.out.println("----------------------------------------------------------------------------------");
@@ -57,8 +56,7 @@ public class StreamTest {
 	/**
 	 * Prints the strings with specific length.
 	 *
-	 * @param length
-	 *            the length
+	 * @param length the length
 	 */
 	void printStringsWithSpecificLength(int length) {
 		Predicate<String> p = s -> (s.length() == length);
@@ -137,24 +135,35 @@ public class StreamTest {
 	/**
 	 * Prints the something.
 	 *
-	 * @param name
-	 *            the name
+	 * @param name the name
 	 */
 	private void printSomething(String name) {
 		System.out.println();
 		System.out.println("A double colon test, known as " + name);
 	}
 
-	private List<Person> populateSamplePersonData() {
+	public static List<Person> populateSamplePersonData() {
 		List<Person> pList = new ArrayList<>();
 		Random r = new Random();
 		for (int i = 0; i < 10; ++i) {
 			int n = r.nextInt(9);
 			String name = strList.get(n);
 			n = r.nextInt(9);
-			Person p = new Person(name, (n + 5) * 4, "0419-001-12" + i);
+			Person p = new Person(name, (n + 5) * 4, "0419-001-12" + i,
+					StreamTest.generateRandomWord() + "@gmail.com");
 			pList.add(p);
 		}
 		return pList;
+	}
+
+	public static String generateRandomWord() {
+		String randomStrings = null;
+		Random random = new Random();
+		char[] word = new char[random.nextInt(8) + 3];
+		for (int j = 0; j < word.length; j++) {
+			word[j] = (char) ('a' + random.nextInt(26));
+		}
+		randomStrings = new String(word);
+		return randomStrings;
 	}
 }

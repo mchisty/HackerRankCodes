@@ -57,7 +57,7 @@ public class FunctionExample {
 			int n = r.nextInt(9);
 			String name = personNamesList.get(n);
 			n = r.nextInt(9);
-			Person p = new Person(name, (n + 5) * 4, "0419-001-12" + i);
+			Person p = new Person(name, (n + 5) * 4, "0419-001-12" + i, StreamTest.generateRandomWord() + "@yahoo.com");
 			pList.add(p);
 		}
 		return pList;

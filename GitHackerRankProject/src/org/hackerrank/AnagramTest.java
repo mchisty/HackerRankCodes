@@ -49,7 +49,7 @@ public class AnagramTest {
 
 		for (int i = 0; i < b.length(); ++i) {
 			Character c = b.charAt(i);
-			if (map.containsKey(c)) {
+			if (map.containsKey(c) && map.get(c) > 0) {
 				int frequency = map.get(c) - 1;
 				map.put(c, frequency);
 			}
@@ -57,7 +57,6 @@ public class AnagramTest {
 
 		int count = 0;
 		for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-			if (entry.getValue() > 0)
 			count = count + entry.getValue();
 		}
 		return count;

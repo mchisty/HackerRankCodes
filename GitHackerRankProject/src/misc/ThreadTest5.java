@@ -14,7 +14,7 @@ public class ThreadTest5 extends Thread {
 		ThreadTest5 thread = new ThreadTest5();
 		thread.start();
 		for (int i = 0; i < 10; i++) {
-			System.out.print(thread.code);
+			System.out.println(thread.code);
 		}
 	}
 }

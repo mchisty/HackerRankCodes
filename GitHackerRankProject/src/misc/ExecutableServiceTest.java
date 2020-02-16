@@ -2,6 +2,7 @@
 package misc;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -24,9 +25,9 @@ public class ExecutableServiceTest {
 	 */
 	public static void main(String[] args) {
 		ExecutableServiceTest et = new ExecutableServiceTest();
-		// et.executorTest1();
-		// et.executorTest2();
-		et.executorTest3();
+//		 et.executorTest1();
+		 et.executorTest2();
+//		et.executorTest3();
 	}
 
 	/**
@@ -34,9 +35,10 @@ public class ExecutableServiceTest {
 	 */
 	private void executorTest1() {
 		ExecutorService executor = Executors.newSingleThreadExecutor();
-		executor.submit(() -> {
+		Runnable r = () -> {
 			System.out.println("##### executorTest1 #####");
-		});
+		};
+		executor.submit(r);
 		executor.shutdown();
 	}
 
@@ -50,15 +52,17 @@ public class ExecutableServiceTest {
 	 * used to retrieve the actual result at a later point in time.
 	 * 
 	 */
+	private Callable<String> callable1 = () -> {
+		Thread.sleep(100);
+		return "Hello Callable";
+	};
+
+
 	private void executorTest2() {
 		try {
 			System.out.println("##### executorTest2 #######");
 			ExecutorService executor = Executors.newSingleThreadExecutor();
-			Callable<String> c = () -> {
-				Thread.sleep(1000);
-				return "Hello Callable";
-			};
-			Future<String> future = executor.submit(c);
+			Future<String> future = executor.submit(callable1);
 			System.out.println("Callable done? " + future.isDone());
 			System.out.println("Value from callable: " + future.get());
 			System.out.println("Callable done? " + future.isDone());
@@ -82,11 +86,11 @@ public class ExecutableServiceTest {
 			Callable<String> c = () -> {
 				// Try by commenting this line. No TimeoutException will be
 				// shown
-				Thread.sleep(1000);
+				Thread.sleep(2000);
 				return "Hello Callable";
 			};
 			Future<String> future = executor.submit(c);
-			future.get(2, TimeUnit.SECONDS);
+			future.get(1, TimeUnit.SECONDS);
 			executor.shutdown();
 		} catch (TimeoutException | InterruptedException | ExecutionException e) {
 			e.printStackTrace();

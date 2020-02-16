@@ -34,11 +34,12 @@ public class Person {
 	 * @param phone
 	 *            the phone
 	 */
-	public Person(String givenName, int age, String phone) {
+	public Person(String givenName, int age, String phone, String email) {
 		super();
 		this.givenName = givenName;
 		this.age = age;
 		this.phone = phone;
+		this.email = email;
 	}
 
 	/**

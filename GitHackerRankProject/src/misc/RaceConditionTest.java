@@ -92,9 +92,8 @@ public class RaceConditionTest {
 		Runnable decrementar = () -> {
 			for (int i = 0; i < count; ++i) {
 				ct.countDown(); // Count down and releases shared mode
+				System.out.print(ct.getCount() + "..");
 				try {
-					ct.countDown(); // Count down and releases shared mode
-					System.out.print(ct.getCount() + "..");
 					Thread.sleep(200);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -111,11 +110,11 @@ public class RaceConditionTest {
 	 * - display i index value
 	 */
 	private void safeWithCounDownLatch() {
-		CountDownLatch cl = new CountDownLatch(count);
+		CountDownLatch countDownLatch = new CountDownLatch(count);
 		Runnable waiter = () -> {
 			try {
 				System.out.println("Step1: Wait progress bar ...");
-				cl.await();
+				countDownLatch.await();
 				System.out.println("\nStep 3: Wait finished. Safe approach completed.");
 
 			} catch (Exception e) {
@@ -124,9 +123,9 @@ public class RaceConditionTest {
 		};
 		Runnable decrementar = () -> {
 			for (int i = 0; i < count; ++i) {
-				cl.countDown();
+				countDownLatch.countDown();
+				System.out.print(i + "..");
 				try {
-					System.out.print(i + "..");
 					Thread.sleep(200);
 				} catch (InterruptedException e) {
 					e.printStackTrace();

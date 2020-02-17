@@ -25,9 +25,12 @@ public class SoluionSecretCodeShoppingCart {
 		List<List<String>> codeList = new ArrayList<>();
 		codeList.add(l1);
 		codeList.add(l2);
-		// List<String> shoppingCart = Arrays.asList(BANNANA, ORANGE, BANNANA, APPLE, APPLE); // false, 0
-		// List<String> shoppingCart = Arrays.asList(ORANGE, APPLE, APPLE, BANNANA, ORANGE, BANNANA); // true, 1
-		List<String> shoppingCart = Arrays.asList(BANNANA, ORANGE, BANNANA, ORANGE, APPLE, APPLE); // false, 0
+		System.out.println("Codelist: ");
+		codeList.stream().forEach(s -> System.out.println(s.toString()));
+//		List<String> shoppingCart = Arrays.asList(ORANGE, APPLE, APPLE, BANNANA, ORANGE, BANNANA); // true, 1
+		List<String> shoppingCart = Arrays.asList(BANNANA, ORANGE, APPLE, APPLE, BANNANA, BANNANA, BANNANA, ORANGE,
+				BANNANA); // true, 1
+//		List<String> shoppingCart = Arrays.asList(BANNANA, ORANGE, BANNANA, ORANGE, APPLE, APPLE); // false, 0
 		// List<String> shoppingCart = Arrays.asList(BANNANA, ORANGE, BANNANA); // false, 0
 		// List<String> shoppingCart = Arrays.asList(APPLE, APPLE); // false, 0
 		// List<String> shoppingCart = Arrays.asList(BANNANA, ORANGE, BANNANA, ORANGE, APPLE, APPLE, BANNANA, ORANGE,
@@ -47,30 +50,32 @@ public class SoluionSecretCodeShoppingCart {
 	 * @return the int
 	 */
 	int checkWinner(List<List<String>> codeList, List<String> shoppingCart) {
-		int cartIndexPos = 0;
+//		System.out.println("Shopping cart: " + shoppingCart.toString());
+		int cartItemIndexPos = 0;
 		boolean flag = true;
 
 		final boolean flagList[] = new boolean[codeList.size()];
 
-		outer: for (int count = 0; count < codeList.size(); ++count) {
-			List<String> items = codeList.get(count);
+		outer: for (int codeGroupIndex = 0; codeGroupIndex < codeList.size(); ++codeGroupIndex) {
+			List<String> items = codeList.get(codeGroupIndex);
+			System.out.println("[b] items: " + items.toString());
 			for (int i = 0; i < items.size();) {
-				if (cartIndexPos >= shoppingCart.size()) {
+				if (cartItemIndexPos >= shoppingCart.size()) {
 					break;
 				}
-				if (i < items.size() - 1 && cartIndexPos < shoppingCart.size() - 1
-						&& itemsMatch(items.get(i), shoppingCart.get(cartIndexPos))) {
+				if (i < items.size() - 1 && cartItemIndexPos < shoppingCart.size() - 1
+						&& itemsMatch(items.get(i), shoppingCart.get(cartItemIndexPos))) {
 					i += 1;
-					cartIndexPos += 1;
+					cartItemIndexPos += 1;
 					flag = (i == items.size() - 1);
-					flagList[count] = flag;
+					flagList[codeGroupIndex] = flag;
 					// If full match found for current list-of-items, no need to check further. Continue with the next
 					// list-of-items
 					if (flag) {
 						continue outer;
 					}
 				} else if (i == 0) {
-					cartIndexPos += 1;
+					cartItemIndexPos += 1;
 					flag = false;
 				} else {
 					i = 0;

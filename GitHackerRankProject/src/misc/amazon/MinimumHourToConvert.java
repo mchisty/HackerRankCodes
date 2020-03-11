@@ -5,10 +5,73 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.stream.IntStream;
 
+/**
+ * Problem description: <br/>
+ * 
+ * Cloudfront can be visualized as 2D grid servers. When Amazon wants to host a
+ * file on Cloudfront, the file needs to be distributed to all servers. The
+ * servers are in the form of a 2D array of 0s and 1s, where 0 represents a
+ * server that has not yet to receive the file and 1 represents a server that
+ * already has the file.
+ * 
+ * 
+ * Amazon will initially send the file to a handful of servers based on expected
+ * utilisation. A server, upon receiving the a file, will then send the file to
+ * adjacent servers that don't yet have the file.
+ * 
+ * An adjacent sever is either on the left, right, above or below a given
+ * server. To conserver bandwidth, once a server receives a file, it will wait 1
+ * hour before sending the file to adjacent servers.
+ * 
+ * 
+ * Given the 2D array representing the existence of a new file on each server,
+ * write an algorithm that will determine the minimum number of hours required
+ * to send the file to all available servers.
+ * 
+ * Input<br/>
+ * -----------------<br/>
+ * The input to the method consisting of the arguments<br/>
+ * rows: an integer representing the number of rows in the grid<br/>
+ * columns: an integer representing the number of columns in the grid<br/>
+ * grid: interger array representing the current status of servers. <br/>
+ * 
+ * 
+ * Output<br/>
+ * --------------<br/>
+ * Return a integer representing the minimum number of hours required to send
+ * the file to all available servers. Return -1 if all available servers cannot
+ * receive the file.
+ * 
+ * Note: Diagonally placed cells are not considered as adjacent.<br/>
+ * 
+ * 
+ * Example:<br/>
+ * =========================
+ * 
+ * Input<br/>
+ * 
+ * rows=4<br/>
+ * columns=5<br/>
+ * grid= <br/>
+ * [[0,1,1,0,1],<br/>
+ * [0,1,0,1,0],<br/>
+ * [0,0,0,0,1],<br/>
+ * [0,1,0,0,0]]<br/>
+ * 
+ * 
+ * Output<br/>
+ * 
+ * 2
+ * 
+ */
 public class MinimumHourToConvert {
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		int rows = 4;
 		int columns = 5;
@@ -21,6 +84,14 @@ public class MinimumHourToConvert {
 		System.out.println(result);
 	}
 
+	/**
+	 * Minimum hours.
+	 *
+	 * @param rows    the rows
+	 * @param columns the columns
+	 * @param grid    the grid
+	 * @return the int
+	 */
 	static int minimumHours(int rows, int columns, List<List<Integer>> grid) {
 
 		int[][] array = new int[rows][columns];
@@ -35,9 +106,15 @@ public class MinimumHourToConvert {
 
 	}
 
+	/**
+	 * Min days.
+	 *
+	 * @param grid the grid
+	 * @return the int
+	 */
 	private static int minDays(int[][] grid) {
 		Queue<int[]> queue = new LinkedList<int[]>();
-		int target = grid.length * grid[0].length;
+		int gridMatrixSize = grid.length * grid[0].length;
 		int cnt = 0, res = 0;
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid[0].length; j++) {
@@ -50,13 +127,10 @@ public class MinimumHourToConvert {
 		int[][] dirs = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
 		while (!queue.isEmpty()) {
 			int size = queue.size();
-			if (cnt == target)
+			if (cnt == gridMatrixSize)
 				return res;
 			for (int i = 0; i < size; i++) {
 				int[] cur = queue.poll();
-				System.out.println("cur : ");
-				IntStream.of(cur).forEach(k -> System.out.print(k + " ,"));
-				System.out.println();
 				for (int[] dir : dirs) {
 					int ni = cur[0] + dir[0];
 					int nj = cur[1] + dir[1];

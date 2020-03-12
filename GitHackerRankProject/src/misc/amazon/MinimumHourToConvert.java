@@ -102,7 +102,7 @@ public class MinimumHourToConvert {
 			}
 		}
 
-		return minDays(array);
+		return calcMinHours(array);
 
 	}
 
@@ -112,10 +112,11 @@ public class MinimumHourToConvert {
 	 * @param grid the grid
 	 * @return the int
 	 */
-	private static int minDays(int[][] grid) {
+	private static int calcMinHours(int[][] grid) {
 		Queue<int[]> queue = new LinkedList<int[]>();
 		int gridMatrixSize = grid.length * grid[0].length;
 		int cnt = 0, res = 0;
+
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid[0].length; j++) {
 				if (grid[i][j] == 1) {
@@ -124,17 +125,19 @@ public class MinimumHourToConvert {
 				}
 			}
 		}
+		System.out.println("Q size:" + queue.size());
+
 		int[][] dirs = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
 		while (!queue.isEmpty()) {
 			int size = queue.size();
 			if (cnt == gridMatrixSize)
 				return res;
-			for (int i = 0; i < size; i++) {
+			for (int queueIndex = 0; queueIndex < size; queueIndex++) {
 				int[] cur = queue.poll();
 				for (int[] dir : dirs) {
 					int ni = cur[0] + dir[0];
 					int nj = cur[1] + dir[1];
-					System.out.println("ni:" + ni + ", nj: " + nj);
+//					System.out.println("ni:" + ni + ", nj: " + nj);
 					if (ni >= 0 && ni < grid.length && nj >= 0 && nj < grid[0].length && grid[ni][nj] == 0) {
 						cnt++;
 						queue.offer(new int[] { ni, nj });

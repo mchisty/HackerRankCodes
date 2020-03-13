@@ -1,5 +1,7 @@
 package org.hackerrank;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 // TODO: Auto-generated Javadoc
@@ -8,7 +10,8 @@ import java.util.Scanner;
 /**
  * The Class BinaryTreeTest.
  */
-// 3 5 4 7 2 1
+// 14 25 31 39 21 28 36 47 24 41 32
+
 public class BinaryTreeTest {
 
 	/**
@@ -30,17 +33,27 @@ public class BinaryTreeTest {
 		for (int i = 0; i < T; ++i) {
 			root = insert(root, a[i]);
 		}
+
+		System.out.println("\n---------------------------------------------------------");
+
 		System.out.println("root: " + root.data);
+		System.out.println("###### Inorder traversal ###### ");
 		printInOrder(root);
+		System.out.println();
+		System.out.println("###### Pre-order traversal ###### ");
+		printPreOrder(root);
+		System.out.println();
 
 		int value = 35; // 14 25 31 39 21 28 36 47 24 41 32
 		int closestValue = getClosestNode(root, value).data;
 		System.out.println("\nClosest to " + value + " is " + closestValue);
+		System.out.println("\n-------------- BFS --------------");
+		traverseLevelOrder(root);
+
 	}
 
 	/**
 	 * Insert.
-	 *
 	 * @param root
 	 *            the root
 	 * @param data
@@ -60,6 +73,7 @@ public class BinaryTreeTest {
 				root.right = tmp;
 			}
 		}
+
 		return root;
 	}
 
@@ -74,6 +88,43 @@ public class BinaryTreeTest {
 			printInOrder(node.left);
 			System.out.print(node.data + " ");
 			printInOrder(node.right);
+		}
+	}
+
+	public static void printPreOrder(BNode node) {
+		if (node != null) {
+			System.out.print(node.data + " ");
+			printPreOrder(node.left);
+			printPreOrder(node.right);
+		}
+	}
+
+	/**
+	 * BFS: This is another common type of traversal that visits all the nodes of a
+	 * level before going to the next level.
+	 * 
+	 * This kind of traversal is also called level-order and visits all the levels
+	 * of the tree starting from the root, and from left to right.
+	 * 
+	 * 
+	 */
+	public static void traverseLevelOrder(BNode root) {
+		if (root == null) {
+			return;
+		}
+
+		Queue<BNode> nodes = new LinkedList<>();
+		nodes.add(root);
+
+		while (!nodes.isEmpty()) {
+			BNode node = nodes.remove();
+			System.out.print(" " + node.data);
+			if (node.left != null) {
+				nodes.add(node.left);
+			}
+			if (node.right != null) {
+				nodes.add(node.right);
+			}
 		}
 	}
 
